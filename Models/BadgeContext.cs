@@ -9,6 +9,6 @@ namespace SpeiderappAPI.Models
         {
         }
 
-        public DbSet<Badge> Badges { get; set; }
+        public DbSet<Badge> BadgeList { get; set; }
     }
 }
