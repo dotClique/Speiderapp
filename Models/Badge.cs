@@ -17,7 +17,5 @@ namespace SpeiderappAPI.Models
         [XmlIgnore]
         [JsonIgnore]
         public string Secret { get; set; }
-
-        public BadgeDTO toDTO() => new BadgeDTO(this);
     }
 }
