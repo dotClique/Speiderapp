@@ -1,3 +1,6 @@
+using System.Text.Json.Serialization;
+using System.Xml.Serialization;
+
 namespace SpeiderappAPI.Models
 {
     public class Badge
@@ -11,8 +14,9 @@ namespace SpeiderappAPI.Models
         public int RootNode { get; set; }
         public string Created_at { get; set; }
         public bool IsComplete { get; set; }
+        [XmlIgnore]
+        [JsonIgnore]
         public string Secret { get; set; }
-
 
         public BadgeDTO toDTO() => new BadgeDTO(this);
     }

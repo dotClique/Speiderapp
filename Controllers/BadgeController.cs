@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SpeiderappAPI.Models;
 
-
 namespace SpeiderappAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -21,16 +20,14 @@ namespace SpeiderappAPI.Controllers
 
         // GET: api/Badge
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BadgeDTO>>> GetBadges()
+        public async Task<ActionResult<IEnumerable<Badge>>> GetBadges()
         {
-            return await _context.BadgeList
-                .Select(x => x.toDTO())
-                .ToListAsync();
+            return await _context.BadgeList.ToListAsync();
         }
 
         // GET: api/Badge/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<BadgeDTO>> GetBadge(long id)
+        public async Task<ActionResult<Badge>> GetBadge(long id)
         {
             var badge = await _context.BadgeList.FindAsync(id);
 
@@ -39,36 +36,36 @@ namespace SpeiderappAPI.Controllers
                 return NotFound();
             }
 
-            return badge.toDTO();
+            return badge;
         }
 
         // PUT: api/Badge/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBadge(long id, BadgeDTO badgeDTO)
+        public async Task<IActionResult> PutBadge(long id, Badge badge)
         {
-            if (id != badgeDTO.Id)
+            if (id != badge.Id)
             {
                 return BadRequest();
             }
 
-            var badge = await _context.BadgeList.FindAsync(id);
-            if (badge == null)
-            {
-                return NotFound();
-            }
-
-            badge.Name = badgeDTO.Name;
-            badge.IsComplete = badgeDTO.IsComplete;
+            _context.Entry(badge).State = EntityState.Modified;
 
             try
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException) when (!BadgeExists(id))
+            catch (DbUpdateConcurrencyException)
             {
-                return NotFound();
+                if (!BadgeExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
             return NoContent();
@@ -78,21 +75,12 @@ namespace SpeiderappAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Badge>> PostBadge(BadgeDTO badgeDTO)
+        public async Task<ActionResult<Badge>> PostBadge(Badge badge)
         {
-            var badge = new Badge
-            {
-                IsComplete = badgeDTO.IsComplete,
-                Name = badgeDTO.Name
-            };
-
             _context.BadgeList.Add(badge);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(
-                nameof(GetBadge),
-                new { id = badge.Id },
-                badge.toDTO());
+            return CreatedAtAction("GetBadge", new { id = badge.Id }, badge);
         }
 
         // DELETE: api/Badge/5
@@ -100,7 +88,6 @@ namespace SpeiderappAPI.Controllers
         public async Task<ActionResult<Badge>> DeleteBadge(long id)
         {
             var badge = await _context.BadgeList.FindAsync(id);
-
             if (badge == null)
             {
                 return NotFound();
@@ -109,10 +96,12 @@ namespace SpeiderappAPI.Controllers
             _context.BadgeList.Remove(badge);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return badge;
         }
 
-        private bool BadgeExists(long id) =>
-            _context.BadgeList.Any(e => e.Id == id);
+        private bool BadgeExists(long id)
+        {
+            return _context.BadgeList.Any(e => e.Id == id);
+        }
     }
 }
