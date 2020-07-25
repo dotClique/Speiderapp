@@ -24,7 +24,7 @@ namespace SpeiderappAPI.Controllers
         public async Task<ActionResult<IEnumerable<BadgeDTO>>> GetBadges()
         {
             return await _context.BadgeList
-                .Select(x => ToDTO(x))
+                .Select(x => x.toDTO())
                 .ToListAsync();
         }
 
@@ -39,7 +39,7 @@ namespace SpeiderappAPI.Controllers
                 return NotFound();
             }
 
-            return ToDTO(badge);
+            return badge.toDTO();
         }
 
         // PUT: api/Badge/5
@@ -78,7 +78,7 @@ namespace SpeiderappAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Badge>> PostBadge(Badge badgeDTO)
+        public async Task<ActionResult<Badge>> PostBadge(BadgeDTO badgeDTO)
         {
             var badge = new Badge
             {
@@ -92,7 +92,7 @@ namespace SpeiderappAPI.Controllers
             return CreatedAtAction(
                 nameof(GetBadge),
                 new { id = badge.Id },
-                ToDTO(badge));
+                badge.toDTO());
         }
 
         // DELETE: api/Badge/5
@@ -114,13 +114,5 @@ namespace SpeiderappAPI.Controllers
 
         private bool BadgeExists(long id) =>
             _context.BadgeList.Any(e => e.Id == id);
-
-        private static BadgeDTO ToDTO(Badge badge) =>
-            new BadgeDTO
-            {
-                Id = badge.Id,
-                Name = badge.Name,
-                IsComplete = badge.IsComplete
-            };
     }
 }
