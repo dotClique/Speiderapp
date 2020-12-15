@@ -5,8 +5,16 @@ Speiderapp Progressive Web-App front-end
 # How to use
 
 ## Start server
+To start the server simply run the following command.
+**NB:** You will need to manually restart the server after file-changes. See below for how to automate server restarts.
 ```bash
 dotnet run
+```
+
+## Start server with watch
+Tired of manually restarting the server? Run the following command to have dotnet automatically restart the server upon file-changes.
+```bash
+dotnet watch run
 ```
 
 
