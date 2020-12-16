@@ -1,0 +1,18 @@
+@page "/badges"
+
+<h1>Badges</h1>
+
+<p>This will become a overview page for badges</p>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
