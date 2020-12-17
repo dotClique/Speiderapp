@@ -23,10 +23,26 @@ else
             @foreach (var badge in badges)
             {
                 <tr>
-                    <td><img src="@BadgeLogo(badge.Image)" alt="badge @badge.Id logo"></td>
-                    <td>@badge.Name</td>
-                    <td>@badge.Description</td>
-                    <td>@badge.IsComplete</td>
+                    <td>
+                        <a href="/badge/@badge.Id">
+                            <img src="@BadgeLogo(badge.Image)" alt="badge @badge.Id logo">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/badge/@badge.Id">
+                            @badge.Name
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/badge/@badge.Id">
+                            @badge.Description
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/badge/@badge.Id">
+                            @badge.IsComplete
+                        </a>
+                    </td>
                 </tr>
             }
         </tbody>
