@@ -1,0 +1,163 @@
+﻿#badge-table {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.red {
+    background-color: palevioletred;
+}
+
+.green {
+    background-color: palegreen;
+}
+.dot {
+    height: 25px;
+    width: 25px;
+
+    border-radius: 50%;
+    display: inline-block;
+}
+.badge-element {
+    transition: all 0.5s ease;
+    background-color: #f1f1f1;
+    border-radius: 5%;
+    border: 1px solid black;
+    color:black;
+    margin: 5px;
+    display: grid;
+    width: 200px;
+    height: 200px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 4fr 1fr 4fr;
+    grid-template-areas:
+    ". ."
+    "image title"
+    "description description"
+    "requirements requirements"
+}
+
+.badge-image {
+    padding: 3px;
+    grid-area: image;
+    overflow: hidden;
+
+}
+
+.badge-image img {
+    max-width:100%;
+    max-height:100%;
+    border-radius: 50%;
+
+}
+
+.badge-title {
+    transition: all 1s ease;
+    font-size: 1.5rem;
+    margin: auto;
+    padding: 4px;
+    grid-area: title;
+    overflow: hidden;
+}
+
+.badge-requirements {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+    padding: 4px;
+    grid-area: requirements;
+}
+
+.badge-description {
+    transition: all 0.5s ease;
+    opacity: 0;
+    padding: 4px;
+    margin: auto;
+    grid-area: description;
+    overflow: hidden;
+}
+@keyframes move {
+    from {grid-template-rows: 1fr 4fr 1fr 4fr;}
+    to {grid-template-rows:  1fr 1fr 400fr 4fr;}
+}
+@keyframes hide {
+    from {opacity: 1}
+    to {opacity: 0}
+}
+@keyframes reveal {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+@keyframes shrink {
+    from {max-width:100%;
+        max-height:100%;}
+    to {max-width:50%;
+        max-height:50%;}
+}
+@keyframes shrink-font {
+    from {font-size: 1.5rem;}
+    to {font-size: 0.5rem;}
+}
+
+.badge-element:hover {
+    transition: all 2s ease;
+    grid-template-rows:  0fr 0fr 4fr 4fr;
+}
+
+.badge-element:hover .badge-title {
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.badge-element:hover .badge-description {
+    transition: all 2s ease;
+    opacity: 1;
+}
+
+.search-bar{
+    width:100%;
+    height: 30px;
+}
+.filter{
+    float: left;
+    line-height: 180%;
+    margin: 0 10px 0 0;
+    padding: 2px;
+}
+.filter:hover{
+    background-color: #e4e4e4;
+}
+
+.search-form{
+    margin: auto;
+    max-height:100%;
+}
+.search-input{
+    margin: auto;
+    max-height:100%;
+}
+.search-button{
+    background-color: #e4e4e4;
+    border: none;
+    padding: 6px 10px;
+    font-size: 16px;
+    margin-right: 16px;
+    max-height:100%;
+}
+
+.filter-options{
+    display: flex;
+    flex-wrap: wrap;
+    height: 75px;
+}
+.filter:hover .filter-options{
+    height:300px;
+}
+.filter-option{
+    width: 200px;
+    margin-right: 5px;
+    background-color: #dbdbdb;
+    overflow: hidden;
+}
