@@ -1,50 +1,86 @@
 @page "/badges"
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <h1>Badges</h1>
 
 <p>This component demonstrates fetching data from the API.</p>
 
+<div class="search-bar">
+    <span class="filter"><i class="fa fa-filter"></i></span>
+    <form class="search-form">
+        <input class="search-input" type="text" placeholder="Search">
+        <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
+    </form>
+</div>
+<!-- 
+<div class="filter-options">
+    <div class="filter-option">
+        Option 1
+        <br>
+        <input type="text">
+    </div>
+    <div class="filter-option">
+        Option 2
+        <br>
+        <input type="checkbox">
+    </div>
+    <div class="filter-option">
+        Option 3
+        <br>
+        <input type="checkbox">
+    </div>
+</div>
+-->
+<hr>
+<br>
+<br>
 @if (badges == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Completed</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var badge in badges)
+    <div id="badge-table">
+    @foreach (var badge in badges)
+    {
+        var color = "";
+            if (badge.IsComplete)
+                {
+                    color = "green";
+                }
+            else
             {
-                <tr>
-                    <td>
-                        <a href="/badge/@badge.Id">
-                            <img src="@BadgeLogo(badge.Image)" alt="badge @badge.Id logo">
-                        </a>
-                    </td>
-                    <td>
-                        <a href="/badge/@badge.Id">
-                            @badge.Name
-                        </a>
-                    </td>
-                    <td>
-                        <a href="/badge/@badge.Id">
-                            @badge.Description
-                        </a>
-                    </td>
-                    <td>
-                        <a href="/badge/@badge.Id">
-                            @badge.IsComplete
-                        </a>
-                    </td>
-                </tr>
+                color = "#808080";
             }
-        </tbody>
-    </table>
+            <a href="/badge/@badge.Id">
+                <div class="badge-element" style="border-color: @color">
+                    <div class="badge-image">
+                        <img src="@BadgeLogo(badge.Image)" alt="badge @badge.Id logo">
+                    </div>
+                    <div class="badge-title">
+                        @badge.Name
+                    </div>
+                    <div class="badge-description">
+                        @badge.Description
+                    </div>
+                    <div class="badge-requirements">
+                        @for (var i = 0; i < new Random().Next(0,20); i++) {
+                            @if (new Random().Next(0, 2) == 0)
+                            {
+                                color = "red";
+                            }
+                            else
+                            {
+                                color = "green";
+                            }
+                            var list = new List<string>{ "Gi Espen penger","Gi Espen et kompliment","Bytt til python","Si til Espen hvor vakker han er"};
+                            var tooltip = list[i%list.Count];
+                            
+                            <div class="@color dot" title="@tooltip"></div>
+                        }
+
+                    </div>
+                </div>
+                </a>
+        }
+    </div>
 }
