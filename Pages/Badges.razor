@@ -40,13 +40,16 @@
 else
 {
     <div id="badge-table">
-    @foreach (var badge in badges)
-    {
-        var color = "";
+        @{
+            var random = new Random();
+        }
+        @foreach (var badge in badges)
+        {
+            var color = "";
             if (badge.IsComplete)
-                {
-                    color = "green";
-                }
+            {
+                color = "green";
+            }
             else
             {
                 color = "#808080";
@@ -63,8 +66,12 @@ else
                         @badge.Description
                     </div>
                     <div class="badge-requirements">
-                        @for (var i = 0; i < new Random().Next(0,20); i++) {
-                            @if (new Random().Next(0, 2) == 0)
+                        @{
+                            var numRequirements = random.Next(0, 20);
+                        }
+                        @for (var i = 0; i < numRequirements; i++)
+                        {
+                            @if (random.Next(0, 2) == 0)
                             {
                                 color = "red";
                             }
@@ -72,15 +79,15 @@ else
                             {
                                 color = "green";
                             }
-                            var list = new List<string>{ "Gi Espen penger","Gi Espen et kompliment","Bytt til python","Si til Espen hvor vakker han er"};
-                            var tooltip = list[i%list.Count];
-                            
+                            var list = new List<string> {"Gi Espen penger", "Gi Espen et kompliment", "Bytt til python", "Si til Espen hvor vakker han er"};
+                            var tooltip = list[i % list.Count];
+
                             <div class="@color dot" title="@tooltip"></div>
                         }
 
                     </div>
                 </div>
-                </a>
+            </a>
         }
     </div>
 }
