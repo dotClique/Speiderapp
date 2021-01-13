@@ -42,20 +42,13 @@ else
     <div id="badge-table">
         @{
             var random = new Random();
+            string border_color = "";
+            string color = "";
         }
         @foreach (var badge in badges)
         {
-            var color = "";
-            if (badge.IsComplete)
-            {
-                color = "green";
-            }
-            else
-            {
-                color = "#808080";
-            }
             <a href="/badge/@badge.Id">
-                <div class="badge-element" style="border-color: @color">
+                <div class="badge-element">
 
    
                     <div class="badge-title">
@@ -90,6 +83,12 @@ else
                             <img src="@BadgeLogo(badge.Image)" alt="badge @badge.Id logo">
                         </div>
                     </div>
+                    <div class="badge-background" style="border-color: @border_color"></div>
+                    
+                    @if (badge.IsComplete)
+                    {
+                    <div class="badge-checkmark"><i class="fa fa-check"></i></div>
+                    }
                 </div>
             </a>
         }
