@@ -56,9 +56,8 @@ else
             }
             <a href="/badge/@badge.Id">
                 <div class="badge-element" style="border-color: @color">
-                    <div class="badge-image">
-                        <img src="@BadgeLogo(badge.Image)" alt="badge @badge.Id logo">
-                    </div>
+
+   
                     <div class="badge-title">
                         @badge.Name
                     </div>
@@ -85,6 +84,11 @@ else
                             <div class="@color dot" title="@tooltip"></div>
                         }
 
+                    </div>
+                    <div class="badge-image-container">
+                        <div class="badge-image">
+                            <img src="@BadgeLogo(badge.Image)" alt="badge @badge.Id logo">
+                        </div>
                     </div>
                 </div>
             </a>

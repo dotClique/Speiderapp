@@ -1,4 +1,7 @@
-﻿#badge-table {
+﻿:root{
+    --badge-background: #f1f1f1;
+}
+#badge-table {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -19,8 +22,9 @@
     display: inline-block;
 }
 .badge-element {
+    position: relative;
     transition: all 0.5s ease;
-    background-color: #f1f1f1;
+
     border-radius: 5%;
     border: 1px solid black;
     color:black;
@@ -29,22 +33,38 @@
     width: 200px;
     height: 200px;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 4fr 1fr 4fr;
+    grid-template-rows: 1fr 4fr 0fr 0fr;
     grid-template-areas:
+    "title title"
     ". ."
-    "image title"
     "description description"
     "requirements requirements"
 }
 
+.badge-image-container {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    top: 20%;
+    z-index: -1;
+}
+
+.badge-element:hover .badge-image-container {
+    transition: all 0.5s linear;
+    opacity: 0.2;
+}
 .badge-image {
+    
     padding: 3px;
     grid-area: image;
     overflow: hidden;
+    background-color: var(--badge-background);
 
 }
 
 .badge-image img {
+    display: block;
+    margin: auto;
     max-width:100%;
     max-height:100%;
     border-radius: 50%;
@@ -52,24 +72,26 @@
 }
 
 .badge-title {
+    background-color: var(--badge-background);
     transition: all 1s ease;
     font-size: 1.5rem;
     margin: auto;
     padding: 4px;
     grid-area: title;
-    overflow: hidden;
 }
 
 .badge-requirements {
+    background-color: var(--badge-background);
     display: flex;
     flex-wrap: wrap;
     align-content: space-around;
     justify-content: space-around;
-    padding: 4px;
     grid-area: requirements;
+    overflow: hidden;
 }
 
 .badge-description {
+    background-color: var(--badge-background);
     transition: all 0.5s ease;
     opacity: 0;
     padding: 4px;
@@ -103,12 +125,11 @@
 
 .badge-element:hover {
     transition: all 2s ease;
-    grid-template-rows:  0fr 0fr 4fr 4fr;
+    grid-template-rows: 1fr 0fr 4fr 2fr;
 }
 
 .badge-element:hover .badge-title {
     transition: all 0.5s ease;
-    opacity: 0;
 }
 
 .badge-element:hover .badge-description {
