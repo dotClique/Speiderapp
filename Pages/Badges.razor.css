@@ -1,9 +1,13 @@
-﻿#badge-table {
+﻿.badge-table {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
 }
 
+.badge-table.list {
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
 .red {
     background-color: palevioletred;
 }
@@ -34,6 +38,19 @@
     "description description"
     "requirements requirements";
 }
+
+.badge-element.list {
+    display: grid;
+    width: min(100%, 600px);
+    height: 150px;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: 1fr 3fr;
+    grid-template-areas:
+    ". title"
+    ". description";
+}
+
+
 .badge-background {
     border-radius: 5%;
     background-color: #E2E2E2;
@@ -50,16 +67,24 @@
     z-index: -1;
 }
 
+.badge-image-container.list {
+    width: 150px;
+    height:150px;
+    top: 0;
+}
+
 .badge-element:hover .badge-image-container {
     transition: all 0.5s linear;
     opacity: 0.2;
 }
+
+.badge-element.list:hover .badge-image-container {
+    opacity: 1;
+}
 .badge-image {
-    
     padding: 3px;
     grid-area: image;
     overflow: hidden;
-
 }
 
 .badge-image img {
@@ -68,7 +93,6 @@
     max-width:100%;
     max-height:100%;
     border-radius: 50%;
-
 }
 
 .badge-title {
@@ -83,6 +107,11 @@
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.badge-title.list {
+    margin: 0;
+    text-align: left;
 }
 
 .badge-requirements {
@@ -102,6 +131,14 @@
     overflow: hidden;
 }
 
+.badge-description.list {
+    margin: 0;
+}
+.badge-description.list {
+    opacity: 1;
+    overflow: hidden;
+}
+
 
 .badge-checkmark {
     position: absolute;
@@ -115,14 +152,25 @@
     background-color: green;
     border-radius: 50%;
 }
+
 .badge-checkmark i {
     text-align: center;
     color: #E2E2E2;
 }
 
+.badge-checkmark.list {
+    height: 20px;
+    width: 20px;
+    left:calc(100% - 30px);
+}
+
 .badge-element:hover {
     transition: all 2s ease;
     grid-template-rows: 1fr 0fr 4fr 2fr;
+}
+
+.badge-element.list:hover {
+    grid-template-rows: 1fr 3fr;
 }
 
 .badge-element:hover .badge-description {
@@ -165,9 +213,10 @@
     display: flex;
     flex-wrap: wrap;
     height: 75px;
+    overflow:hidden;
 }
-.filter:hover .filter-options{
-    height:300px;
+.collapsed{
+    height:0;
 }
 .filter-option{
     width: 200px;
