@@ -152,7 +152,8 @@
     overflow: hidden;
 }
 
-.badge-requirements.list {
+.badge-requirements.list .dot{
+    margin-left: 1px;
 }
 .badge-description {
     opacity: 0;
