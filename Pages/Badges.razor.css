@@ -128,8 +128,8 @@
     fill: transparent;
 }
 .badge-image-background svg path{
-    fill: green;
-    stroke: green;
+    fill: #5b9765;;
+    stroke: #5b9765;;
 }
 
 .badge-image-background.list {
