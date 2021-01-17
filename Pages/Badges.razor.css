@@ -43,7 +43,7 @@
 }
 .badge-element {
     position: relative;
-    transition: all 0.5s ease;
+    transition: all 0s ease;
     color:black;
     margin: 5px;
     display: grid;
@@ -68,6 +68,10 @@
     grid-template-areas:
     ". title"
     ". description";
+}
+
+.badge-element:not(list){
+    
 }
 
 
@@ -148,7 +152,7 @@
     padding: 4px;
     margin: auto;
     grid-area: description;
-    overflow: hidden;
+    text-overflow: hidden;
 }
 
 .badge-description.list {
@@ -246,7 +250,6 @@
 }
 
 @supports (-moz-appearance:none) {
-    .badge-description { transition:all 0.5s ease;}
     .badge-element:hover .badge-description {
         transition: all 2s ease;
     }
