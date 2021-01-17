@@ -68,10 +68,11 @@
     width: min(100%, 600px);
     height: 150px;
     grid-template-columns: 150px 1fr;
-    grid-template-rows: 1fr 3fr;
+    grid-template-rows: 2fr 6fr 1fr;
     grid-template-areas:
     ". title"
     ". description";
+    ". requirements"
 }
 
 .badge-element:not(list){
@@ -151,6 +152,8 @@
     overflow: hidden;
 }
 
+.badge-requirements.list {
+}
 .badge-description {
     opacity: 0;
     padding: 4px;
