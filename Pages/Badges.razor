@@ -32,7 +32,8 @@
 
 
 
-<hr>
+<div class="separator"><hr class="inline-line"></div>
+<i class="fa fa-th @gridSelected" @onclick="gridView"></i><i class="fa fa-list @listSelected" @onclick="listView"></i>
 <br>
 <br>
 @if (badges == null)
@@ -98,19 +99,33 @@ else
 @code
 {
     private string collapsed = "collapsed";
+    private string gridSelected = "selected";
+    private string listSelected = "";
     private string list = "";
     private void ToggleFilter()
     {
         if (collapsed == "")
         {
             collapsed = "collapsed";
-            list = "list";
         }
         else
         {
             collapsed = "";
-            list = "";
         }
+    }
+
+    private void listView()
+    {
+        list = "list";
+        gridSelected = "";
+        listSelected = "selected";
+    }
+
+    private void gridView()
+    {
+        list = "";
+        gridSelected = "selected";
+        listSelected = "";
     }
 }
 }

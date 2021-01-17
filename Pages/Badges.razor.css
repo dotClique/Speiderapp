@@ -22,6 +22,25 @@
     border-radius: 50%;
     display: inline-block;
 }
+.separator {
+    height: 4px;
+    width: 100%;
+}
+.inline-line {
+    width: 100%;
+}
+
+.fa-th {
+    margin-right: 10px;
+}
+
+.fa-list {
+    
+}
+
+.selected {
+    color: #3a0647;
+}
 .badge-element {
     position: relative;
     transition: all 0.5s ease;
@@ -40,6 +59,7 @@
 }
 
 .badge-element.list {
+    transition-duration: 0s;
     display: grid;
     width: min(100%, 600px);
     height: 150px;
