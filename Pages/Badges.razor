@@ -74,10 +74,10 @@ else
                             {
                                 color = "green";
                             }
-                            var list = new List<string> {"Gi Espen penger", "Gi Espen et kompliment", "Bytt til python", "Si til Espen hvor vakker han er"};
-                            var tooltip = list[i % list.Count];
+                            var taskList = new List<string> {"Gi Espen penger", "Gi Espen et kompliment", "Bytt til python", "Si til Espen hvor vakker han er"};
+                            var tooltip = taskList[i % taskList.Count];
 
-                            <div class="@color dot" title="@tooltip"></div>
+                            <div class="@color dot @list" title="@tooltip"></div>
                         }
 
                     </div>

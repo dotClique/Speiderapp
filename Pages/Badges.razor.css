@@ -9,11 +9,11 @@
     flex-direction: column;
 }
 .red {
-    background-color: palevioletred;
+    background-color: #acacac;
 }
 
 .green {
-    background-color: palegreen;
+    background-color: #5b9765;
 }
 .dot {
     height: 25px;
@@ -21,6 +21,10 @@
 
     border-radius: 50%;
     display: inline-block;
+}
+
+.dot.list {
+    border-radius: 5%;
 }
 .separator {
     height: 4px;
