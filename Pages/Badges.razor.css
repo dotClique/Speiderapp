@@ -75,9 +75,6 @@
     ". requirements"
 }
 
-.badge-element:not(list){
-    
-}
 
 
 .badge-background {
@@ -86,7 +83,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: -2;
+    z-index: -3;
 }
 .badge-image-container {
     position: absolute;
@@ -114,6 +111,32 @@
     padding: 3px;
     grid-area: image;
     overflow: hidden;
+}
+
+.badge-image-background {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    top: 20%;
+    z-index: -2;
+    border-radius: 50%;
+    visibility: hidden;
+}
+
+.badge-image-background svg path{
+    stroke: transparent;
+    fill: transparent;
+}
+.badge-image-background svg path{
+    fill: green;
+    stroke: green;
+}
+
+.badge-image-background.list {
+    width: 150px;
+    height:150px;
+    top: 0;
+    visibility: visible;
 }
 
 .badge-image img {

@@ -33,7 +33,7 @@
 
 
 <div class="separator"><hr class="inline-line"></div>
-<i class="fa fa-th @gridSelected" @onclick="gridView"></i><i class="fa fa-list @listSelected" @onclick="listView"></i>
+<i class="fa fa-th @gridSelected" @onclick="GridView"></i><i class="fa fa-list @listSelected" @onclick="ListView"></i>
 <br>
 <br>
 @if (badges == null)
@@ -47,6 +47,9 @@ else
             var random = new Random();
             string border_color = "";
             string color = "";
+            int numRequirements;
+            int numGreen;
+            double fraction;
         }
         @foreach (var badge in badges)
         {
@@ -62,7 +65,8 @@ else
                     </div>
                     <div class="badge-requirements @list">
                         @{
-                            var numRequirements = random.Next(0, 14);
+                            numRequirements = random.Next(0, 14);
+                            numGreen = 0;
                         }
                         @for (var i = 0; i < numRequirements; i++)
                         {
@@ -73,18 +77,30 @@ else
                             else
                             {
                                 color = "green";
+                                numGreen++;
                             }
                             var taskList = new List<string> {"Gi Espen penger", "Gi Espen et kompliment", "Bytt til python", "Si til Espen hvor vakker han er"};
                             var tooltip = taskList[i % taskList.Count];
-
+                            
                             <div class="@color dot @list" title="@tooltip"></div>
                         }
-
                     </div>
                     <div class="badge-image-container @list">
                         <div class="badge-image">
                             <img src="@BadgeLogo(badge.Image)" alt="badge @badge.Id logo">
                         </div>
+                    </div>
+                    <div class="badge-image-background @list">
+
+                        @{ fraction = (double) numGreen / (double) numRequirements; }
+                        
+                        <svg>
+                            <path d="M75,75 L75,0 A75,75 1 0,1 @RightBorderY(fraction), @RightBorderX(fraction) z"></path>
+                            @if (fraction > 0.5f)
+                            {
+                                <path d="M75,75 L75,150 A75,75 1 0,1 @LeftBorderY(fraction),@LeftBorderX(fraction) z"></path>
+                            }
+                        </svg>
                     </div>
                     <div class="badge-background @list" style="border-color: @border_color"></div>
                     
@@ -114,18 +130,51 @@ else
         }
     }
 
-    private void listView()
+    private void ListView()
     {
         list = "list";
         gridSelected = "";
         listSelected = "selected";
     }
 
-    private void gridView()
+    private void GridView()
     {
         list = "";
         gridSelected = "selected";
         listSelected = "";
+    }
+
+    private double RightBorderY(double deg)
+    {
+        if (deg >= 0.5)
+        {
+            return 75.0;
+        }
+        return Math.Sin(-deg * Math.PI * 2+Math.PI)*75+75;
+    }
+    private double RightBorderX(double deg)
+    {
+        if (deg >= 0.5)
+        {
+            return 150;
+        }
+        return Math.Cos(-deg * Math.PI * 2+Math.PI)*75+75;
+    }
+    private double LeftBorderY(double deg)
+    {
+        if (deg <= 0.5)
+        {
+            return 150.0;
+        }
+        return Math.Sin(-deg * Math.PI * 2+Math.PI)*75+75;
+    }
+    private double LeftBorderX(double deg)
+    {
+        if (deg <= 0.5)
+        {
+            return 0;
+        }
+        return Math.Cos(-deg * Math.PI * 2+Math.PI)*75+75;
     }
 }
 }
