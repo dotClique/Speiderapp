@@ -4,11 +4,9 @@ namespace SpeiderappAPI.Models
 {
     public class BadgeContext : DbContext
     {
-        public BadgeContext(DbContextOptions<BadgeContext> options)
-            : base(options)
-        {
-        }
-
         public DbSet<Badge> BadgeList { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            => optionsBuilder.UseNpgsql("");
     }
 }
