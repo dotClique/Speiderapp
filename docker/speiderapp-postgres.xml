@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<Container version="1">
-    <TemplateURL>https://raw.githubusercontent.com/Dentsor/SpeiderappAPI/master/docker/postgres.xml</TemplateURL>
+<Container version="3">
+    <TemplateURL>https://raw.githubusercontent.com/Dentsor/SpeiderappAPI/i1/database-setup/docker/speiderapp-postgres.xml?token=ACJAZZZ5U3M6RTVOSG3JAE3AJ6SNK</TemplateURL>
     <Date>2021-03-08</Date>
     <Beta>False</Beta>
     <Name>speiderapp-postgres</Name>
@@ -37,8 +37,8 @@
             <Mode>rw</Mode>
         </Volume>
         <Volume>
-            <HostDir>/mnt/user/appdata/postgres/setup</HostDir>
-            <ContainerDir>/setup</ContainerDir>
+            <HostDir>/mnt/user/appdata/postgres/initdb</HostDir>
+            <ContainerDir>/docker-entrypoint-initdb.d</ContainerDir>
             <Mode>r</Mode>
         </Volume>
     </Data>
