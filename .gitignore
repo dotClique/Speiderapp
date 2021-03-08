@@ -2,6 +2,8 @@
 # Ignore all IntelliJ/Rider workspace
 **/.idea/*
 
+# Ignore secrets
+**/secrets
 
 # Created by https://www.toptal.com/developers/gitignore/api/csharp,visualstudiocode,rider
 # Edit at https://www.toptal.com/developers/gitignore?templates=csharp,visualstudiocode,rider
