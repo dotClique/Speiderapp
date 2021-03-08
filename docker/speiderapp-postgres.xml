@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Container version="3">
-    <TemplateURL>https://raw.githubusercontent.com/Dentsor/SpeiderappAPI/i1/database-setup/docker/speiderapp-postgres.xml?token=ACJAZZZ5U3M6RTVOSG3JAE3AJ6SNK</TemplateURL>
+    <TemplateURL>https://raw.githubusercontent.com/Dentsor/SpeiderappAPI/i1/database-setup/docker/speiderapp-postgres.xml</TemplateURL>
     <Date>2021-03-08</Date>
     <Beta>False</Beta>
     <Name>speiderapp-postgres</Name>
