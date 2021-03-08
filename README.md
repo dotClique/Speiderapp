@@ -27,6 +27,21 @@ dotnet watch run
 | DELETE      | /api/Badge/\<id\> | Delete a Badge     |
 
 
+## Local configuration
+
+### Development
+To override configuration settings which do not need to be secure locally,
+create
+```appsettings.Development.local.json```.
+To override/set development secrets,
+use:
+```bash
+dotnet user-secrets set <key> <value>
+```
+
+### Production
+Create ```appsettings.Production.local.json```, and
+
 # Guidelines & conventions
 
 ## Branches

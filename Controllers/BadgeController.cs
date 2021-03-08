@@ -11,9 +11,9 @@ namespace SpeiderappAPI.Controllers
     [ApiController]
     public class BadgeController : ControllerBase
     {
-        private readonly BadgeContext _context;
+        private readonly DBContext _context;
 
-        public BadgeController(BadgeContext context)
+        public BadgeController(DBContext context)
         {
             _context = context;
         }

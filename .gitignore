@@ -3,8 +3,11 @@
 **/.idea/*
 **/.vscode/*
 
-# Ignore secrets
+# Ignore DB secrets
 **/secrets
+
+# Ignore local configuration files
+*.local.json
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/csharp

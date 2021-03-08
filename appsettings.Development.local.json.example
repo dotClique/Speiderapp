@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "host=SERVER_NAME_HERE;port=PORT_NUMBER;database=DATABASE_NAME;username=USERNAME_HERE;password=PASSWORD_HERE"
+  }
+}
