@@ -39,6 +39,77 @@ use:
 dotnet user-secrets set <key> <value>
 ```
 
+
+#### Database
+
+By default, the project will run using an InMemory database.
+However, for production and debugging, a postgres database is recommended.
+
+You can set up and run a local Postgres database using docker.
+First create two password files: `Database/secrets/rootPassword` and `Database/secrets/speiderappPassword`.
+These should contain only the set up passwords to be used for the database, and should not be checked in to the Git repo.
+
+To configure the servers database connection, define a connection string in `appsettings.Development.local.json`.
+To do this, copy and rename the example file `appsettings.Development.local.json.example`, and update the connection string inside.
+Use the `speiderapp` user from the database setup, not the `postgres`/`root` user.
+
+```bash
+##
+# Set up, build and run docker image
+##
+# Set up root and user passwords
+"RootPasswordHere" > Database/secrets/rootPassword
+"UserPasswordHere" > Database/secrets/speiderappPassword
+
+# Build and run docker image (first time setup)
+docker build --tag speiderapp/postgres ./Database/
+docker run --name speiderapp-postgres -p 5432:5432 speiderapp/postgres
+
+# To later remove the image (if necessary)
+docker image rm speiderapp/postgres
+
+
+###
+# Start, stop and remove container
+###
+# Start docker container
+docker start speiderapp-postgres
+
+# Stop docker container
+docker stop speiderapp-postgres
+
+# Remove docker container
+docker rm speiderapp-postgres
+
+# Connect to container terminal
+docker exec -it speiderapp-postgres bash
+
+
+##
+# Set up connection string
+##
+# Copy and rename `appsettings.Development.local.json.example`
+cp appsettings.Development.local.json.example appsettings.Development.local.json
+
+# Edit `appsettings.Development.local.json` (use your editor of choice)
+vi appsettings.Development.local.json
+```
+
+
+#### Migrations
+
+Migrations set up and prepare the database for the data models used in Dotnet.
+Make sure to run the [database setup](#database) before running migrations.
+
+```bash
+# Make sure you've install the tools
+dotnet tool restore
+
+# Create migrations and apply
+dotnet ef migrations add ShortMigrationDescription
+dotnet ef database update
+```
+
 ### Production
 Create ```appsettings.Production.local.json```, and
 
