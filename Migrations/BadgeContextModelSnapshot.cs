@@ -144,50 +144,6 @@ namespace SpeiderappAPI.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("SpeiderappAPI.Models.Tag", b =>
-                {
-                    b.HasOne("SpeiderappAPI.Models.Category", "Category")
-                        .WithMany("Tags")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("SpeiderappAPI.Models.TaggedWith", b =>
-                {
-                    b.HasOne("SpeiderappAPI.Models.Badge", "Badge")
-                        .WithMany("TaggedWiths")
-                        .HasForeignKey("BadgeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SpeiderappAPI.Models.Tag", "Tag")
-                        .WithMany("TaggedWiths")
-                        .HasForeignKey("TagId1", "TagCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Badge");
-
-                    b.Navigation("Tag");
-                });
-
-            modelBuilder.Entity("SpeiderappAPI.Models.Badge", b =>
-                {
-                    b.Navigation("TaggedWiths");
-                });
-
-            modelBuilder.Entity("SpeiderappAPI.Models.Category", b =>
-                {
-                    b.Navigation("Tags");
-                });
-
-            modelBuilder.Entity("SpeiderappAPI.Models.Tag", b =>
-                {
-                    b.Navigation("TaggedWiths");
-                });
 #pragma warning restore 612, 618
         }
     }
