@@ -9,8 +9,8 @@ using SpeiderappAPI.Models;
 namespace SpeiderappAPI.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20210411124853_created Tag Taggedwith and Category2")]
-    partial class createdTagTaggedwithandCategory2
+    [Migration("20210411125708_AddTagCategory")]
+    partial class AddTagCategory
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

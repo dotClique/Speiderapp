@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace SpeiderappAPI.Migrations
 {
-    public partial class createdTagTaggedwithandCategory : Migration
+    public partial class AddTagCategory : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
