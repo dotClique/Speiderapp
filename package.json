@@ -1,0 +1,21 @@
+{
+  "name": "SpeiderappAPI",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/dotclique/speiderappapi.git",
+  "author": "Speiderapp Team <hello@speiderapp.no>",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4"
+  },
+  "lint-staged": {
+    "*.cs": [
+      "dotnet dotnet-format --fix-style info --include"
+    ]
+  },
+  "scripts": {
+    "preinstall": "dotnet tool restore",
+    "postinstall": "husky install"
+  }
+}
