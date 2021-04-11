@@ -11,7 +11,7 @@
             LastName = lastName;
         }
 
-        public long Id { get; }
+        public long Id { get; init; }
 
         public string Email { get; set; }
 
