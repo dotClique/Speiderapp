@@ -9,7 +9,7 @@ namespace SpeiderappAPI.Models
         private IConfiguration Configuration { get; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<TaggedWith> taggedWiths { get; set; }
+        public DbSet<TaggedWith> TaggedWiths { get; set; }
 
         public DBContext(DbContextOptions options, IConfiguration configuration) : base(options)
             => Configuration = configuration;
@@ -17,6 +17,8 @@ namespace SpeiderappAPI.Models
         {
             modelBuilder.Entity<Tag>()
                 .HasKey(c => new { c.Id, c.CategoryId });
+            modelBuilder.Entity<TaggedWith>()
+                .HasKey(c => new {c.BadgeId, c.TagId});
         }
 
     }

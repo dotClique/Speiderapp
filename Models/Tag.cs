@@ -17,6 +17,6 @@ namespace SpeiderappAPI.Models
         public string Value { get; set; }
         public long CategoryId { get; set; }
         public Category Category { get; set; }
-        public  List<TaggedWith> TaggedWiths { get; set; }
+        public List<TaggedWith> TaggedWiths { get; set; }
     }
 }
