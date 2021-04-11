@@ -19,6 +19,8 @@ namespace SpeiderappAPI.Models
         {
             modelBuilder.Entity<TaggedWith>()
                 .HasKey(c => new { c.BadgeId, c.TagId });
+
+            modelBuilder.Seed();
         }
     }
 }
