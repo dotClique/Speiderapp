@@ -102,7 +102,7 @@ Migrations set up and prepare the database for the data models used in Dotnet.
 Make sure to run the [database setup](#database) before running migrations.
 
 ```bash
-# Make sure you've install the tools
+# Make sure tools are installed
 dotnet tool restore
 
 # Create migrations and apply
@@ -127,8 +127,23 @@ In cases where one does minor changes that don't affect behavior (like a spellin
 
 # Tips & Tricks
 
+## Code formatting
+We're using [dotnet-format](https://www.nuget.org/packages/dotnet-format/) for automatic formatting.
+Formatting rules are defined in `.editorconfig`.
+```bash
+# Make sure tools are installed
+dotnet tool restore
+
+# Run dotnet-format and fix all issues
+# `--fix-style` may be replaced with `-s` for short
+dotnet format --fix-style info
+
+# Run dotnet-format check for pre-commit hooks etcetera
+dotnet format --fix-style info --check
+```
+
 ## Creating a controller
-Replace **Badge** in the following snipet with whatever model/object you're creating a controller for:
+Replace **Badge** in the following snippet with whatever model/object you're creating a controller for:
 ```bash
 dotnet aspnet-codegenerator controller -name BadgeController -async -api -m Badge -dc BadgeContext -outDir Controllers
 ```
