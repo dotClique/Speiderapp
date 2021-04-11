@@ -7,8 +7,17 @@ namespace SpeiderappAPI.Models
     {
         public DbSet<Badge> BadgeList => Set<Badge>();
         private IConfiguration Configuration { get; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<TaggedWith> taggedWiths { get; set; }
 
         public DBContext(DbContextOptions options, IConfiguration configuration) : base(options)
             => Configuration = configuration;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Tag>()
+                .HasKey(c => new { c.Id, c.CategoryId });
+        }
+
     }
 }
