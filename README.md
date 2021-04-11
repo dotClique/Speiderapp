@@ -4,6 +4,20 @@ Speiderapp API back-end
 
 # How to use
 
+## Setup
+Prerequisites:
+* [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0)
+* [Node.js](https://nodejs.org/en/)
+
+```bash
+# Clone the repo (example uses ssh)
+git clone git@github.com:dotClique/SpeiderappAPI.git
+cd ./SpeiderappAPI
+
+# Run install script
+yarn install
+```
+
 ## Start server
 To start the server simply run the following command.
 **NB:** You will need to manually restart the server after file-changes. See below for how to automate server restarts.
@@ -15,6 +29,12 @@ dotnet run
 Tired of manually restarting the server? Run the following command to have dotnet automatically restart the server upon file-changes.
 ```bash
 dotnet watch run
+```
+
+## Formatting
+See [Code formatting](#code-formatting) for details.
+```bash
+dotnet format -s info
 ```
 
 ## Routes
