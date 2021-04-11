@@ -9,7 +9,7 @@ using SpeiderappAPI.Models;
 namespace SpeiderappAPI.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20210411125708_AddTagCategory")]
+    [Migration("20210411151235_AddTagCategory")]
     partial class AddTagCategory
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,7 +85,9 @@ namespace SpeiderappAPI.Migrations
             modelBuilder.Entity("SpeiderappAPI.Models.Tag", b =>
                 {
                     b.Property<long>("Id")
-                        .HasColumnType("bigint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<long>("CategoryId")
                         .HasColumnType("bigint");
@@ -94,7 +96,7 @@ namespace SpeiderappAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id", "CategoryId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
@@ -109,15 +111,9 @@ namespace SpeiderappAPI.Migrations
                     b.Property<long>("TagId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("TagCategoryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("TagId1")
-                        .HasColumnType("bigint");
-
                     b.HasKey("BadgeId", "TagId");
 
-                    b.HasIndex("TagId1", "TagCategoryId");
+                    b.HasIndex("TagId");
 
                     b.ToTable("TaggedWiths");
                 });
@@ -167,7 +163,7 @@ namespace SpeiderappAPI.Migrations
 
                     b.HasOne("SpeiderappAPI.Models.Tag", "Tag")
                         .WithMany("TaggedWiths")
-                        .HasForeignKey("TagId1", "TagCategoryId")
+                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

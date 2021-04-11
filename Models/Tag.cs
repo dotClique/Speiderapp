@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
-using System.Xml.Serialization;
 
 namespace SpeiderappAPI.Models
 {

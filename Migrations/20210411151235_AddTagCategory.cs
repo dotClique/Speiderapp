@@ -24,13 +24,14 @@ namespace SpeiderappAPI.Migrations
                 name: "Tags",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false),
-                    CategoryId = table.Column<long>(type: "bigint", nullable: false),
-                    Value = table.Column<string>(type: "text", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Value = table.Column<string>(type: "text", nullable: false),
+                    CategoryId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tags", x => new { x.Id, x.CategoryId });
+                    table.PrimaryKey("PK_Tags", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Tags_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -44,9 +45,7 @@ namespace SpeiderappAPI.Migrations
                 columns: table => new
                 {
                     BadgeId = table.Column<long>(type: "bigint", nullable: false),
-                    TagId = table.Column<long>(type: "bigint", nullable: false),
-                    TagId1 = table.Column<long>(type: "bigint", nullable: false),
-                    TagCategoryId = table.Column<long>(type: "bigint", nullable: false)
+                    TagId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -58,17 +57,17 @@ namespace SpeiderappAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TaggedWiths_Tags_TagId1_TagCategoryId",
-                        columns: x => new { x.TagId1, x.TagCategoryId },
+                        name: "FK_TaggedWiths_Tags_TagId",
+                        column: x => x.TagId,
                         principalTable: "Tags",
-                        principalColumns: new[] { "Id", "CategoryId" },
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_TaggedWiths_TagId1_TagCategoryId",
+                name: "IX_TaggedWiths_TagId",
                 table: "TaggedWiths",
-                columns: new[] { "TagId1", "TagCategoryId" });
+                column: "TagId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tags_CategoryId",
