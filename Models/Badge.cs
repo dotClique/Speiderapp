@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace SpeiderappAPI.Models
@@ -27,9 +28,11 @@ namespace SpeiderappAPI.Models
         public string Author { get; set; }
         public int RootNode { get; set; }
         public string CreatedAt { get; set; }
+        public List<TaggedWith> TaggedWiths { get; set; }
         public bool IsComplete { get; set; }
         [XmlIgnore]
         [JsonIgnore]
         public string Secret { get; set; }
+
     }
 }
