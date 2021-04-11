@@ -6,6 +6,7 @@ namespace SpeiderappAPI.Models
     public class DBContext : DbContext
     {
         public DbSet<Badge> BadgeList => Set<Badge>();
+        public DbSet<User> Users => Set<User>();
         private IConfiguration Configuration { get; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tag> Tags { get; set; }
