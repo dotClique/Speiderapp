@@ -19,7 +19,7 @@ namespace SpeiderappAPI.Models
             modelBuilder.Entity<Tag>()
                 .HasKey(c => new { c.Id, c.CategoryId });
             modelBuilder.Entity<TaggedWith>()
-                .HasKey(c => new {c.BadgeId, c.TagId});
+                .HasKey(c => new { c.BadgeId, c.TagId });
         }
 
     }

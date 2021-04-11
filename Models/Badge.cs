@@ -33,6 +33,6 @@ namespace SpeiderappAPI.Models
         [XmlIgnore]
         [JsonIgnore]
         public string Secret { get; set; }
-        
+
     }
 }
