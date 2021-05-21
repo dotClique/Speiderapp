@@ -22,13 +22,13 @@ yarn install
 To start the server simply run the following command.
 **NB:** You will need to manually restart the server after file-changes. See below for how to automate server restarts.
 ```bash
-dotnet run
+dotnet run --project SpeiderappAPI
 ```
 
 ## Start server with watch
 Tired of manually restarting the server? Run the following command to have dotnet automatically restart the server upon file-changes.
 ```bash
-dotnet watch run
+dotnet watch run --project SpeiderappAPI
 ```
 
 ## Formatting
