@@ -9,48 +9,48 @@ namespace SpeiderappAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BadgeController : ControllerBase
+    public class UserController: ControllerBase
     {
         private readonly DBContext _context;
 
-        public BadgeController(DBContext context)
+        public UserController(DBContext context)
         {
             _context = context;
         }
 
-        // GET: api/Badge
+        // GET: api/User
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Badge>>> GetBadges()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.BadgeList.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Badge/<id:long>
+        // GET: api/User/<id:long>
         [HttpGet("{id}")]
-        public async Task<ActionResult<Badge>> GetBadge(long id)
+        public async Task<ActionResult<User>> GetUser(long id)
         {
-            var badge = await _context.BadgeList.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
 
-            if (badge == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return badge;
+            return user;
         }
 
-        // PUT: api/Badge/<id:long>
+        // PUT: api/User/<id:long>
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBadge(long id, Badge badge)
+        public async Task<IActionResult> PutUser(long id, User user)
         {
-            if (id != badge.Id)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(badge).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace SpeiderappAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BadgeExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -71,37 +71,37 @@ namespace SpeiderappAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Badge
+        // POST: api/User
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Badge>> PostBadge([FromBody] Badge badge)
+        public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.BadgeList.Add(badge);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBadge", new { id = badge.Id }, badge);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
-        // DELETE: api/Badge/<id:long>
+        // DELETE: api/User/<id:long>
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Badge>> DeleteBadge(long id)
+        public async Task<ActionResult<User>> DeleteUser(long id)
         {
-            var badge = await _context.BadgeList.FindAsync(id);
-            if (badge == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.BadgeList.Remove(badge);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
-            return badge;
+            return user;
         }
 
-        private bool BadgeExists(long id)
+        private bool UserExists(long id)
         {
-            return _context.BadgeList.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.Id == id);
         }
     }
 }

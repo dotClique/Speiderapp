@@ -8,7 +8,6 @@ namespace SpeiderappAPI.Models
         {
             Id = id;
             Title = title;
-
         }
 
         public long Id { get; init; }
