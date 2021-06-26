@@ -1,0 +1,30 @@
+version '3.6'
+
+services:
+  postgres:
+    image: postgres:13.3-alpine
+    profiles:
+      - development
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=hablebable
+      - POSTGRES_DB=postgres
+      - PGDATA=/data
+    volumes:
+      - /mnt/user/appdata/postgres/data:/data
+      - /mnt/user/appdata/postgres/config:/config
+      - /mnt/user/appdata/postgres/initdb:/docker-entrypoint-initdb.d
+  dev:
+    image: mcr.microsoft.com/dotnet/sdk:5.0
+    profiles:
+      - development
+    ports:
+      - '5000-5001:5000-5001'
+    workdir: /source
+    volumes:
+      - ./:/source
+    entrypoint: ['dotnet', 'watch', 'run', '-p', 'SpeiderappAPI']
+    depends_on:
+      - postgres
