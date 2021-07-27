@@ -1,0 +1,49 @@
+version: '3.6'
+
+services:
+  db_dev:
+    image: postgres:13.3-alpine
+    profiles:
+      - development
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD_FILE=/run/secrets/POSTGRES__ROOT_PASS
+      - POSTGRES_DB=postgres
+      - PGDATA=/data
+      - APP_USER=speiderapp
+      - APP_PASSWORD_FILE=/run/secrets/SPEIDERAPP__DB_PASS
+      - APP_DB=speiderapp
+    volumes:
+      # - ./.docker/db_dev/temp/data:/data
+      # - ./.docker/db_dev/temp/config:/config
+      - ./.docker/db_dev/initdb:/docker-entrypoint-initdb.d
+    secrets:
+      - POSTGRES__ROOT_PASS
+      - SPEIDERAPP__DB_PASS
+  api_dev:
+    image: mcr.microsoft.com/dotnet/sdk:5.0
+    profiles:
+      - development
+    ports:
+      - "5000-5001:5000-5001"
+    environment:
+      - SPEIDERAPP__SECRETS_DIRECTORY=/run/secrets
+    working_dir: /source
+    volumes:
+      - ./:/source
+      - /source/bin
+      - /source/obj
+      - /source/SpeiderappAPI/bin
+      - /source/SpeiderappAPI/obj
+    entrypoint: ["dotnet", "watch", "run", "-p", "SpeiderappAPI"]
+    depends_on:
+      - db_dev
+    secrets:
+      - SPEIDERAPP__DB_PASS
+secrets:
+  POSTGRES__ROOT_PASS:
+    file: ./.docker/secrets/db-postgres-pass
+  SPEIDERAPP__DB_PASS:
+    file: ./.docker/secrets/db-speiderapp-pass

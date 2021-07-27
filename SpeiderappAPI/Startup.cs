@@ -20,6 +20,7 @@ namespace SpeiderappAPI
                 .AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: true) //load local settings
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true) //load environment settings
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.local.json", optional: true) //load local environment settings
+                .AddKeyPerFile(System.Environment.GetEnvironmentVariable("SPEIDERAPP__SECRETS_DIRECTORY") ?? "/run/secrets") //load secrets
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();
@@ -30,7 +31,7 @@ namespace SpeiderappAPI
         {
             services.AddDbContext<DBContext>(opt =>
             {
-                var connectionString = Configuration.GetConnectionString("DefaultConnection");
+                var connectionString = Configuration.GetConnectionString("DefaultConnection") + Configuration.GetValue<string>("SPEIDERAPP:DB_PASS", "");
                 if (connectionString is null)
                     opt.UseInMemoryDatabase(
                         Configuration.GetValue<string>("DefaultInMemoryDatabaseName"));
