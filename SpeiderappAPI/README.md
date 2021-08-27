@@ -8,6 +8,7 @@ Speiderapp API back-end
 Prerequisites:
 * [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0)
 * [Node.js](https://nodejs.org/en/)
+* [Docker](https://docker.com)
 
 ```bash
 # Clone the repo (example uses ssh)
@@ -18,18 +19,27 @@ cd ./SpeiderappAPI
 yarn install
 ```
 
-## Start server
-To start the server simply run the following command.
-**NB:** You will need to manually restart the server after file-changes. See below for how to automate server restarts.
+## Start development server in Docker
+
+The service is run in Docker.
+
+Before initial setup, create the necessary secrets-files:
 ```bash
-dotnet run
+mkdir -p .docker/secrets
+
+nano .docker/secrets/db-postgres-pass
+nano .docker/secrets/db-speiderapp-pass
 ```
 
-## Start server with watch
-Tired of manually restarting the server? Run the following command to have dotnet automatically restart the server upon file-changes.
+Then start the database-server and run migrations
 ```bash
-dotnet watch run
+# Start database and api
+docker-compose up -d db_dev api_dev
+
+# Run migrations
+docker-compose exec api_dev sh -c "dotnet tool restore && dotnet ef database update --project SpeiderappAPI"
 ```
+
 
 ## Formatting
 See [Code formatting](#code-formatting) for details.
@@ -40,79 +50,22 @@ dotnet format -s info
 ## Routes
 | HTTP Method | Route             | Description        |
 | :---------- | :---------------- | :----------------- |
-| GET         | /api/Badge        | List Badges        |
-| GET         | /api/Badge/\<id\> | Retrieve a badge   |
-| POST        | /api/Badge        | Create a new Badge |
-| PUT         | /api/Badge/\<id\> | Update a Badge     |
-| DELETE      | /api/Badge/\<id\> | Delete a Badge     |
+| GET         | /api/v1/Badge        | List Badges        |
+| GET         | /api/v1/Badge/\<id\> | Retrieve a badge   |
+| POST        | /api/v1/Badge        | Create a new Badge |
+| PUT         | /api/v1/Badge/\<id\> | Update a Badge     |
+| DELETE      | /api/v1/Badge/\<id\> | Delete a Badge     |
 
 
 ## Local configuration
 
 ### Development
 To override configuration settings which do not need to be secure locally,
-create
-```appsettings.Development.local.json```.
-To override/set development secrets,
-use:
+create ```appsettings.Development.local.json```.
+
+To override/set development secrets, use:
 ```bash
 dotnet user-secrets set <key> <value>
-```
-
-
-#### Database
-
-By default, the project will run using an InMemory database.
-However, for production and debugging, a postgres database is recommended.
-
-You can set up and run a local Postgres database using docker.
-First create two password files: `Database/secrets/rootPassword` and `Database/secrets/speiderappPassword`.
-These should contain only the set up passwords to be used for the database, and should not be checked in to the Git repo.
-
-To configure the servers database connection, define a connection string in `appsettings.Development.local.json`.
-To do this, copy and rename the example file `appsettings.Development.local.json.example`, and update the connection string inside.
-Use the `speiderapp` user from the database setup, not the `postgres`/`root` user.
-
-```bash
-##
-# Set up, build and run docker image
-##
-# Set up root and user passwords
-"RootPasswordHere" > Database/secrets/rootPassword
-"UserPasswordHere" > Database/secrets/speiderappPassword
-
-# Build and run docker image (first time setup)
-docker build --tag speiderapp/postgres ./Database/
-docker run --name speiderapp-postgres -p 5432:5432 speiderapp/postgres
-
-# To later remove the image (if necessary)
-docker image rm speiderapp/postgres
-
-
-###
-# Start, stop and remove container
-###
-# Start docker container
-docker start speiderapp-postgres
-
-# Stop docker container
-docker stop speiderapp-postgres
-
-# Remove docker container
-docker rm speiderapp-postgres
-
-# Connect to container terminal
-docker exec -it speiderapp-postgres bash
-
-
-##
-# Set up connection string
-##
-# Copy and rename `appsettings.Development.local.json.example`
-cp appsettings.Development.local.json.example appsettings.Development.local.json
-
-# Edit `appsettings.Development.local.json` (use your editor of choice)
-vi appsettings.Development.local.json
 ```
 
 
@@ -132,6 +85,7 @@ dotnet ef database update
 
 ### Production
 Create ```appsettings.Production.local.json```, and
+*more instructions to come*.
 
 # Guidelines & conventions
 
