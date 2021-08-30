@@ -3,7 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using SpeiderappAPI.Models;
+using SpeiderappAPI.Database;
 
 namespace SpeiderappAPI.Controllers
 {
@@ -11,9 +13,9 @@ namespace SpeiderappAPI.Controllers
     [ApiController]
     public class BadgeController : ControllerBase
     {
-        private readonly DBContext _context;
+        private readonly ApiContext _context;
 
-        public BadgeController(DBContext context)
+        public BadgeController(ApiContext context)
         {
             _context = context;
         }
@@ -22,14 +24,14 @@ namespace SpeiderappAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Badge>>> GetBadges()
         {
-            return await _context.BadgeList.ToListAsync();
+            return await _context.Badges/* .Include(badge => badge.Resources) */.ToListAsync();
         }
 
         // GET: api/Badge/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Badge>> GetBadge(long id)
         {
-            var badge = await _context.BadgeList.FindAsync(id);
+            var badge = await _context.Badges.FindAsync(id);
 
             if (badge == null)
             {
@@ -45,7 +47,7 @@ namespace SpeiderappAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBadge(long id, Badge badge)
         {
-            if (id != badge.Id)
+            if (id != badge.RequirementID)
             {
                 return BadRequest();
             }
@@ -77,23 +79,23 @@ namespace SpeiderappAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Badge>> PostBadge(Badge badge)
         {
-            _context.BadgeList.Add(badge);
+            _context.Badges.Add(badge);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBadge", new { id = badge.Id }, badge);
+            return CreatedAtAction("GetBadge", new { id = badge.RequirementID }, badge);
         }
 
         // DELETE: api/Badge/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Badge>> DeleteBadge(long id)
         {
-            var badge = await _context.BadgeList.FindAsync(id);
+            var badge = await _context.Badges.FindAsync(id);
             if (badge == null)
             {
                 return NotFound();
             }
 
-            _context.BadgeList.Remove(badge);
+            _context.Badges.Remove(badge);
             await _context.SaveChangesAsync();
 
             return badge;
@@ -101,7 +103,7 @@ namespace SpeiderappAPI.Controllers
 
         private bool BadgeExists(long id)
         {
-            return _context.BadgeList.Any(e => e.Id == id);
+            return _context.Badges.Any(e => e.RequirementID == id);
         }
     }
 }

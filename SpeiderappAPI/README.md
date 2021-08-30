@@ -25,19 +25,28 @@ The service is run in Docker.
 
 Before initial setup, create the necessary secrets-files:
 ```bash
+# Create secrets directory
 mkdir -p .docker/secrets
 
-nano .docker/secrets/db-postgres-pass
-nano .docker/secrets/db-speiderapp-pass
+# Create and edit the necessary password files
+nano .docker/secrets/POSTGRES__ROOT_PASS
+nano .docker/secrets/SPEIDERAPP__DB_PASS
 ```
 
-Then start the database-server and run migrations
+Then perform the necessary database setup
 ```bash
-# Start database and api
-docker-compose up -d db_dev api_dev
+# Start database-container
+docker-compose up -d database
 
-# Run migrations
-docker-compose exec api_dev sh -c "dotnet tool restore && dotnet ef database update --project SpeiderappAPI"
+# Run migrations to populate the database
+dotnet tool restore
+dotnet ef database update --project SpeiderappAPI"
+```
+
+Then start the backend
+```bash
+# Start the backend-container
+docker-compose up -d backend
 ```
 
 
@@ -50,11 +59,11 @@ dotnet format -s info
 ## Routes
 | HTTP Method | Route             | Description        |
 | :---------- | :---------------- | :----------------- |
-| GET         | /api/v1/Badge        | List Badges        |
-| GET         | /api/v1/Badge/\<id\> | Retrieve a badge   |
-| POST        | /api/v1/Badge        | Create a new Badge |
-| PUT         | /api/v1/Badge/\<id\> | Update a Badge     |
-| DELETE      | /api/v1/Badge/\<id\> | Delete a Badge     |
+| GET         | /api/Badge        | List Badges        |
+| GET         | /api/Badge/\<id\> | Retrieve a badge   |
+| POST        | /api/Badge        | Create a new Badge |
+| PUT         | /api/Badge/\<id\> | Update a Badge     |
+| DELETE      | /api/Badge/\<id\> | Delete a Badge     |
 
 
 ## Local configuration
@@ -79,8 +88,10 @@ Make sure to run the [database setup](#database) before running migrations.
 dotnet tool restore
 
 # Create migrations and apply
-dotnet ef migrations add ShortMigrationDescription
-dotnet ef database update
+dotnet ef migrations add <ShortMigrationDescription> --project SpeiderappAPI
+
+# Update the database
+dotnet ef database update --project SpeiderappAPI
 ```
 
 ### Production
@@ -119,7 +130,11 @@ dotnet format --fix-style info --check
 ## Creating a controller
 Replace **Badge** in the following snippet with whatever model/object you're creating a controller for:
 ```bash
-dotnet aspnet-codegenerator controller -name BadgeController -async -api -m Badge -dc BadgeContext -outDir Controllers
+# Enter the project directory
+cd SpeiderappAPI
+
+# Create the controller
+dotnet aspnet-codegenerator controller -name <Badge>Controller -async -api -m <Badge> -dc ApiContext -outDir Controllers
 ```
 
 ## Dependencies/Packages
@@ -129,5 +144,5 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 ```
 To remove simply use
 ```bash
-dotnet remove package \<package\>
+dotnet remove package <package>
 ```

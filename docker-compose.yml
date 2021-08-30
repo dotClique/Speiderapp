@@ -1,7 +1,7 @@
 version: '3.6'
 
 services:
-  db_dev:
+  database:
     image: postgres:13.3-alpine
     profiles:
       - development
@@ -16,34 +16,39 @@ services:
       - APP_PASSWORD_FILE=/run/secrets/SPEIDERAPP__DB_PASS
       - APP_DB=speiderapp
     volumes:
+      # Data and config is commented out so as to prevent persitence, making it easier to reset
       # - ./.docker/db_dev/temp/data:/data
       # - ./.docker/db_dev/temp/config:/config
       - ./.docker/db_dev/initdb:/docker-entrypoint-initdb.d
     secrets:
       - POSTGRES__ROOT_PASS
       - SPEIDERAPP__DB_PASS
-  api_dev:
+  backend:
     image: mcr.microsoft.com/dotnet/sdk:5.0
     profiles:
       - development
     ports:
-      - "5000-5001:5000-5001"
+      - "5000:5000"
     environment:
       - SPEIDERAPP__SECRETS_DIRECTORY=/run/secrets
+      - SPEIDERAPP__DB_HOST=database
     working_dir: /source
     volumes:
       - ./:/source
+      # Excluding the .docker-directory from the container
+      - /source/.docker
+      # Excluding compiled files from the container, separating the host (Windows) and container (Linux)
       - /source/bin
       - /source/obj
       - /source/SpeiderappAPI/bin
       - /source/SpeiderappAPI/obj
     entrypoint: ["dotnet", "watch", "run", "-p", "SpeiderappAPI"]
     depends_on:
-      - db_dev
+      - database
     secrets:
       - SPEIDERAPP__DB_PASS
 secrets:
   POSTGRES__ROOT_PASS:
-    file: ./.docker/secrets/db-postgres-pass
+    file: ./.docker/secrets/POSTGRES__ROOT_PASS
   SPEIDERAPP__DB_PASS:
-    file: ./.docker/secrets/db-speiderapp-pass
+    file: ./.docker/secrets/SPEIDERAPP__DB_PASS

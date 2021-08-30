@@ -2,16 +2,15 @@
 {
     public class User
     {
-
-        public User(long id, string email, string firstName, string lastName)
+        public User(long userID, string email, string firstName, string lastName)
         {
-            Id = id;
+            UserID = userID;
             Email = email;
             FirstName = firstName;
             LastName = lastName;
         }
 
-        public long Id { get; init; }
+        public long UserID { get; init; }
 
         public string Email { get; set; }
 

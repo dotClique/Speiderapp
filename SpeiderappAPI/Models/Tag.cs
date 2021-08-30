@@ -4,17 +4,17 @@ namespace SpeiderappAPI.Models
 {
     public class Tag
     {
-        public Tag(long id, string value, long categoryId)
+        public Tag(long tagID, string value, long categoryID)
         {
-            Id = id;
-            CategoryId = categoryId;
+            TagID = tagID;
+            CategoryID = categoryID;
             Value = value;
         }
 
-        public long Id { get; init; }
+        public long TagID { get; init; }
         public string Value { get; set; }
-        public long CategoryId { get; set; }
-        public Category Category { get; set; }
-        public List<TaggedWith> TaggedWiths { get; set; }
+        public long CategoryID { get; set; }
+        public virtual Category? Category { get; set; }
+        public virtual ICollection<TaggedWith>? TaggedWiths { get; set; }
     }
 }

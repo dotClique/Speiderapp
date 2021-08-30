@@ -2,15 +2,15 @@
 {
     public class TaggedWith
     {
-        public TaggedWith(long badgeId, long tagId)
+        public TaggedWith(long badgeID, long tagID)
         {
-            BadgeId = badgeId;
-            TagId = tagId;
+            BadgeID = badgeID;
+            TagID = tagID;
         }
 
-        public long BadgeId { get; set; }
-        public Badge Badge { get; set; }
-        public long TagId { get; set; }
-        public Tag Tag { get; set; }
+        public long BadgeID { get; set; }
+        public virtual Badge? Badge { get; set; }
+        public long TagID { get; set; }
+        public virtual Tag? Tag { get; set; }
     }
 }
