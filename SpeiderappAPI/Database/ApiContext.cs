@@ -7,14 +7,14 @@ namespace SpeiderappAPI.Database
 {
     public class ApiContext : DbContext
     {
-        public DbSet<Badge> Badges { get; set; }
-        public DbSet<Requirement> Requirements { get; set; }
-        public DbSet<RequirementPrerequisite> RequirementPrerequisites { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Tag> Tags { get; set; }
-        public DbSet<TaggedWith> TaggedWiths { get; set; }
-        public DbSet<Resource> Resources { get; set; }
+        public DbSet<Badge> Badges { get; set; } = null!;
+        public DbSet<Requirement> Requirements { get; set; } = null!;
+        public DbSet<RequirementPrerequisite> RequirementPrerequisites { get; set; } = null!;
+        public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Category> Categories { get; set; } = null!;
+        public DbSet<Tag> Tags { get; set; } = null!;
+        public DbSet<TaggedWith> TaggedWiths { get; set; } = null!;
+        public DbSet<Resource> Resources { get; set; } = null!;
 
         private IConfiguration _configuration { get; }
 

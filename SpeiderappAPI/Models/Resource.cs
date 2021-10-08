@@ -15,6 +15,6 @@ namespace SpeiderappAPI.Models
         public string Description { get; set; }
         public string Location { get; set; }
         public long RequirementID { get; set; }
-        public virtual Requirement? Requirement { get; set; }
+        public virtual Requirement Requirement { get; set; } = null!;
     }
 }

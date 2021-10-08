@@ -13,6 +13,6 @@ namespace SpeiderappAPI.Models
 
         public long CategoryID { get; init; }
         public string Title { get; set; }
-        public virtual ICollection<Tag>? Tags { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; } = null!;
     }
 }
