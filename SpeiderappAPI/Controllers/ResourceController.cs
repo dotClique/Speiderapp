@@ -27,7 +27,7 @@ namespace SpeiderappAPI.Controllers
         }
 
         // GET: api/Resource/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:long}")]
         public async Task<ActionResult<Resource>> GetResource(long id)
         {
             var resource = await _context.Resources.FindAsync(id);
@@ -41,10 +41,10 @@ namespace SpeiderappAPI.Controllers
         }
 
         // GET: api/Resource/badge/5
-        [HttpGet("badge/{id}")]
-        public async Task<ActionResult<Requirement>> GetBadgeFor(long id)
+        [HttpGet("badge/{id:long}")]
+        public async Task<ActionResult<Requirement?>> GetBadgeFor(long id)
         {
-            var resource = await _context.Resources.FindAsync(-1L);
+            var resource = await _context.Resources.FindAsync(id);
 
             if (resource == null)
             {
@@ -55,8 +55,8 @@ namespace SpeiderappAPI.Controllers
         }
 
         // PUT: api/Resource/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        // To protect from over-posting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id:long}")]
         public async Task<IActionResult> PutResource(long id, Resource resource)
         {
             if (id != resource.ResourceID)
@@ -86,7 +86,7 @@ namespace SpeiderappAPI.Controllers
         }
 
         // POST: api/Resource
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // To protect from over-posting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Resource>> PostResource(Resource resource)
         {

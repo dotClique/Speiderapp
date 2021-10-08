@@ -27,7 +27,7 @@ namespace SpeiderappAPI
                 .AddEnvironmentVariables();
 
             // Load secrets from the designated directory or using a default
-            var secretsDirectory = System.Environment.GetEnvironmentVariable(Constants.ENV_KEY__SECRETS_DIRECTORY) ?? Constants.ENV_DEFAULT__SECRETS_DIRECTORY;
+            var secretsDirectory = System.Environment.GetEnvironmentVariable(Constants.EnvKeySecretsDirectory) ?? Constants.EnvDefaultSecretsDirectory;
             if (Directory.Exists(secretsDirectory))
             {
                 // System.Console.WriteLine($"Adding secrets from {secretsDirectory}");
@@ -39,7 +39,7 @@ namespace SpeiderappAPI
             {
                 var dir = Path.Combine(
                     Directory.GetParent(Directory.GetCurrentDirectory())?.FullName ?? Directory.GetCurrentDirectory(),
-                    Path.Combine(Constants.DEV__SECRETS_DIRECTORY_RELATIVE)
+                    Path.Combine(Constants.DevSecretsDirectoryRelative)
                 );
                 if (Directory.Exists(dir))
                 {
@@ -69,12 +69,12 @@ namespace SpeiderappAPI
                 if (string.IsNullOrEmpty(connectionString))
                 {
                     connectionString = string.Format(
-                        Constants.DEFAULT_CONNECTION_STRING,
-                        Configuration.GetValue(Constants.CONF_KEY__DATABASE_HOSTNAME, Constants.CONF_DEFAULT__DATABASE_HOSTNAME),
-                        Configuration.GetValue(Constants.CONF_KEY__DATABASE_PORT, Constants.CONF_DEFAULT__DATABASE_PORT),
-                        Configuration.GetValue(Constants.CONF_KEY__DATABASE_DATABASE, Constants.CONF_DEFAULT__DATABASE_DATABASE),
-                        Configuration.GetValue(Constants.CONF_KEY__DATABASE_USERNAME, Constants.CONF_DEFAULT__DATABASE_USERNAME),
-                        Configuration.GetValue(Constants.CONF_KEY__DATABASE_PASSWORD, Constants.CONF_DEFAULT__DATABASE_PASSWORD)
+                        Constants.DefaultConnectionString,
+                        Configuration.GetValue(Constants.ConfKeyDatabaseHostname, Constants.ConfDefaultDatabaseHostname),
+                        Configuration.GetValue(Constants.ConfKeyDatabasePort, Constants.ConfDefaultDatabasePort),
+                        Configuration.GetValue(Constants.ConfKeyDatabaseDatabase, Constants.ConfDefaultDatabaseDatabase),
+                        Configuration.GetValue(Constants.ConfKeyDatabaseUsername, Constants.ConfDefaultDatabaseUsername),
+                        Configuration.GetValue(Constants.ConfKeyDatabasePassword, Constants.ConfDefaultDatabasePassword)
                     );
                 }
 
@@ -91,14 +91,12 @@ namespace SpeiderappAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 

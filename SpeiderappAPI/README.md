@@ -40,7 +40,7 @@ docker-compose up -d database
 
 # Run migrations to populate the database
 dotnet tool restore
-dotnet ef database update --project SpeiderappAPI"
+dotnet ef database update --project SpeiderappAPI
 ```
 
 Then start the backend

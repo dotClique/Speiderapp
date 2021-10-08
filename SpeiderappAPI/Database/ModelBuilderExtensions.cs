@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using SpeiderappAPI.Models;
 
-namespace SpeiderappAPI.Models
+namespace SpeiderappAPI.Database
 {
     public static class ModelBuilderExtensions
     {
