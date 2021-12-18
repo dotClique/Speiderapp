@@ -8,6 +8,8 @@ namespace SpeiderappAPI.Database
     public class ApiContext : DbContext
     {
         public DbSet<Badge> Badges { get; set; } = null!;
+        public DbSet<MultipleChoice> MultipleChoices { get; set; } = null!;
+        public DbSet<UserDefined> UserDefineds { get; set; } = null!;
         public DbSet<Requirement> Requirements { get; set; } = null!;
         public DbSet<RequirementPrerequisite> RequirementPrerequisites { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
