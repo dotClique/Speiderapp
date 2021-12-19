@@ -27,7 +27,7 @@ namespace SpeiderappAPI.Controllers
             return await _context.Badges/* .Include(badge => badge.Resources) */.ToListAsync();
         }
 
-        // GET: api/Badge/5
+        // GET: api/Badge/<id>
         [HttpGet("{id:long}")]
         public async Task<ActionResult<Badge>> GetBadge(long id)
         {
@@ -41,7 +41,7 @@ namespace SpeiderappAPI.Controllers
             return badge;
         }
 
-        // PUT: api/Badge/5
+        // PUT: api/Badge/<id>
         // To protect from over-posting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id:long}")]
@@ -85,7 +85,7 @@ namespace SpeiderappAPI.Controllers
             return CreatedAtAction("GetBadge", new { id = badge.RequirementID }, badge);
         }
 
-        // DELETE: api/Badge/5
+        // DELETE: api/Badge/<id>
         [HttpDelete("{id:long}")]
         public async Task<ActionResult<Badge>> DeleteBadge(long id)
         {

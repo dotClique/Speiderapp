@@ -26,7 +26,7 @@ namespace SpeiderappAPI.Controllers
             return await _context.Resources.ToListAsync();
         }
 
-        // GET: api/Resource/5
+        // GET: api/Resource/<id>
         [HttpGet("{id:long}")]
         public async Task<ActionResult<Resource>> GetResource(long id)
         {
@@ -40,21 +40,7 @@ namespace SpeiderappAPI.Controllers
             return resource;
         }
 
-        // GET: api/Resource/badge/5
-        [HttpGet("badge/{id:long}")]
-        public async Task<ActionResult<Requirement?>> GetBadgeFor(long id)
-        {
-            var resource = await _context.Resources.FindAsync(id);
-
-            if (resource == null)
-            {
-                return NotFound();
-            }
-
-            return resource.Requirement;
-        }
-
-        // PUT: api/Resource/5
+        // PUT: api/Resource/<id>
         // To protect from over-posting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:long}")]
         public async Task<IActionResult> PutResource(long id, Resource resource)
@@ -96,7 +82,7 @@ namespace SpeiderappAPI.Controllers
             return CreatedAtAction("GetResource", new { id = resource.ResourceID }, resource);
         }
 
-        // DELETE: api/Resource/5
+        // DELETE: api/Resource/<id>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteResource(long id)
         {
