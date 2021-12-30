@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using System.Text.Json.Serialization;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -54,15 +54,6 @@ namespace SpeiderappAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddMvc()
-            //     .AddJsonOptions(
-            //         options => options.JsonSerializerOptions.ReferenceHandler = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            //     );
-
-            services.AddMvc().AddJsonOptions(
-                opt => opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve
-            );
-
             services.AddDbContext<ApiContext>(opt =>
             {
                 var connectionString = Configuration.GetConnectionString("DefaultConnection");
@@ -84,6 +75,8 @@ namespace SpeiderappAPI
 
                 opt.EnableSensitiveDataLogging(Configuration.GetValue("EnableSensitiveDataLogging", false));
             });
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
