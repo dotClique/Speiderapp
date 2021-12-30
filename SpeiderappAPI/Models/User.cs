@@ -1,4 +1,6 @@
-﻿namespace SpeiderappAPI.Models
+﻿using System.Collections.Generic;
+
+namespace SpeiderappAPI.Models
 {
     public class User
     {
@@ -18,5 +20,6 @@
 
         public string LastName { get; set; }
 
+        public virtual ICollection<Requirement> Requirements { get; set; } = null!;
     }
 }
