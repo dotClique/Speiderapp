@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SpeiderappAPI.Database;
@@ -25,7 +26,7 @@ namespace SpeiderappAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ResourceDto>>> GetResource()
         {
-            return _mapper.Map<List<ResourceDto>>(await _context.Resources.ToListAsync());
+            return await _context.Resources.ProjectTo<ResourceDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
         // GET: api/Resource/<id>

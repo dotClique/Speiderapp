@@ -2,10 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SpeiderappAPI.Database;
 using SpeiderappAPI.DataTransferObjects;
+using SpeiderappAPI.Models;
 
 namespace SpeiderappAPI.Controllers
 {
@@ -26,18 +28,15 @@ namespace SpeiderappAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RequirementDto>>> GetRequirements()
         {
-            return _mapper.Map<List<RequirementDto>>(
-                await _context.Requirements
-                    .Where(requirement => requirement.Discriminator == "Requirement")
-                    .ToListAsync()
-            );
+            return await _context.Requirements.Where(requirement => requirement.Discriminator == nameof(Requirement))
+                .ProjectTo<RequirementDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
         // GET: api/Requirement/all
         [HttpGet("all")]
         public async Task<ActionResult<IEnumerable<RequirementDto>>> GetRequirementsAll()
         {
-            return _mapper.Map<List<RequirementDto>>(await _context.Requirements.ToListAsync());
+            return await _context.Requirements.ProjectTo<RequirementDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
         // Get: api/Requirement/<id>
