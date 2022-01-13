@@ -2,13 +2,15 @@
 Speiderapp API back-end
 
 
-# How to use
+# How to: *develop*
 
-## Setup
-Prerequisites:
+## Prerequisites:
 * [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0)
 * [Node.js](https://nodejs.org/en/)
 * [Docker](https://docker.com)
+
+
+## Clone and run install-script
 
 ```bash
 # Clone the repo (example uses ssh)
@@ -19,7 +21,8 @@ cd ./SpeiderappAPI
 yarn install
 ```
 
-## Start development server in Docker
+
+## Prepare and start development server (in Docker)
 
 The service is run in Docker.
 
@@ -57,13 +60,26 @@ dotnet format -s info
 ```
 
 ## Routes
-| HTTP Method | Route             | Description        |
-| :---------- | :---------------- | :----------------- |
-| GET         | /api/Badge        | List Badges        |
-| GET         | /api/Badge/\<id\> | Retrieve a badge   |
-| POST        | /api/Badge        | Create a new Badge |
-| PUT         | /api/Badge/\<id\> | Update a Badge     |
-| DELETE      | /api/Badge/\<id\> | Delete a Badge     |
+| Controller            | HTTP Method | Route                   | Description                      |
+| :-------------------- | :---------- | :---------------------- | :------------------------------- |
+| BadgeController       | GET         | /api/Badge              | List Badges                      |
+| BadgeController       | GET         | /api/Badge/\<id\>       | Retrieve a specific badge        |
+| BadgeController       | PUT         | /api/Badge/\<id\>       | Update a Badge                   |
+| BadgeController       | POST        | /api/Badge              | Create a new Badge               |
+| BadgeController       | DELETE      | /api/Badge/\<id\>       | Delete a Badge                   |
+| RequirementController | GET         | /api/Requirement        | List all non-badge Requirements  |
+| RequirementController | GET         | /api/Requirement/all    | List all Requirements (any type) |
+| RequirementController | GET         | /api/Requirement/\<id\> | Retrieve a specific Requirement  |
+| ResourceController    | GET         | /api/Resource           | List Resources                   |
+| ResourceController    | GET         | /api/Resource/\<id\>    | Retrieve a specific Resource     |
+| ResourceController    | PUT         | /api/Resource/\<id\>    | Update a Resource                |
+| ResourceController    | POST        | /api/Resource           | Create a new Resource            |
+| ResourceController    | DELETE      | /api/Resource/\<id\>    | Delete a Resource                |
+| UserController        | GET         | /api/User               | List Users                       |
+| UserController        | GET         | /api/User/\<id\>        | Retrieve a specific User         |
+| UserController        | PUT         | /api/User/\<id\>        | Update a User                    |
+| UserController        | POST        | /api/User               | Create a new User                |
+| UserController        | DELETE      | /api/User/\<id\>        | Delete a User                    |
 
 
 ## Local configuration
@@ -75,23 +91,6 @@ create ```appsettings.Development.local.json```.
 To override/set development secrets, use:
 ```bash
 dotnet user-secrets set <key> <value>
-```
-
-
-#### Migrations
-
-Migrations set up and prepare the database for the data models used in Dotnet.
-Make sure to run the [database setup](#database) before running migrations.
-
-```bash
-# Make sure tools are installed
-dotnet tool restore
-
-# Create migrations and apply
-dotnet ef migrations add <ShortMigrationDescription> --project SpeiderappAPI
-
-# Update the database
-dotnet ef database update --project SpeiderappAPI
 ```
 
 ### Production
@@ -128,13 +127,29 @@ dotnet format --fix-style info --check
 ```
 
 ## Creating a controller
-Replace **Badge** in the following snippet with whatever model/object you're creating a controller for:
+Replace **<Badge>** in the following snippet with whatever model/object you're creating a controller for:
 ```bash
 # Enter the project directory
 cd SpeiderappAPI
 
 # Create the controller
 dotnet aspnet-codegenerator controller -name <Badge>Controller -async -api -m <Badge> -dc ApiContext -outDir Controllers
+```
+
+## Creating migrations
+
+Migrations set up and prepare the database for the data models used in Dotnet.
+Make sure to run the [database setup](#prepare-and-start-development-server-in-docker) before running migrations.
+
+```bash
+# Make sure tools are installed
+dotnet tool restore
+
+# Create migrations and apply
+dotnet ef migrations add <ShortMigrationDescription> --project SpeiderappAPI
+
+# Update the database
+dotnet ef database update --project SpeiderappAPI
 ```
 
 ## Dependencies/Packages

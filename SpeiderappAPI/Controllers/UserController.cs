@@ -26,7 +26,7 @@ namespace SpeiderappAPI.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        // GET: api/User/5
+        // GET: api/User/<id>
         [HttpGet("{id:long}")]
         public async Task<ActionResult<User>> GetUser(long id)
         {
@@ -40,7 +40,7 @@ namespace SpeiderappAPI.Controllers
             return user;
         }
 
-        // PUT: api/User/5
+        // PUT: api/User/<id>
         // To protect from over-posting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:long}")]
         public async Task<IActionResult> PutUser(long id, User user)
@@ -82,7 +82,7 @@ namespace SpeiderappAPI.Controllers
             return CreatedAtAction("GetUser", new { id = user.UserID }, user);
         }
 
-        // DELETE: api/User/5
+        // DELETE: api/User/<id>
         [HttpDelete("{id:long}")]
         public async Task<IActionResult> DeleteUser(long id)
         {
