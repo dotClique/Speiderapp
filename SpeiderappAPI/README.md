@@ -64,22 +64,13 @@ dotnet format -s info
 | :-------------------- | :---------- | :---------------------- | :------------------------------- |
 | BadgeController       | GET         | /api/Badge              | List Badges                      |
 | BadgeController       | GET         | /api/Badge/\<id\>       | Retrieve a specific badge        |
-| BadgeController       | PUT         | /api/Badge/\<id\>       | Update a Badge                   |
-| BadgeController       | POST        | /api/Badge              | Create a new Badge               |
-| BadgeController       | DELETE      | /api/Badge/\<id\>       | Delete a Badge                   |
 | RequirementController | GET         | /api/Requirement        | List all non-badge Requirements  |
 | RequirementController | GET         | /api/Requirement/all    | List all Requirements (any type) |
 | RequirementController | GET         | /api/Requirement/\<id\> | Retrieve a specific Requirement  |
 | ResourceController    | GET         | /api/Resource           | List Resources                   |
 | ResourceController    | GET         | /api/Resource/\<id\>    | Retrieve a specific Resource     |
-| ResourceController    | PUT         | /api/Resource/\<id\>    | Update a Resource                |
-| ResourceController    | POST        | /api/Resource           | Create a new Resource            |
-| ResourceController    | DELETE      | /api/Resource/\<id\>    | Delete a Resource                |
 | UserController        | GET         | /api/User               | List Users                       |
 | UserController        | GET         | /api/User/\<id\>        | Retrieve a specific User         |
-| UserController        | PUT         | /api/User/\<id\>        | Update a User                    |
-| UserController        | POST        | /api/User               | Create a new User                |
-| UserController        | DELETE      | /api/User/\<id\>        | Delete a User                    |
 
 
 ## Local configuration

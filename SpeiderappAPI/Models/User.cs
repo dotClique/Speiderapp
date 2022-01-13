@@ -19,7 +19,5 @@ namespace SpeiderappAPI.Models
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
-
-        public virtual ICollection<Requirement> Requirements { get; set; } = null!;
     }
 }
