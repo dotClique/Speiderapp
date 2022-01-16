@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeiderappAPI", "SpeiderappAPI\SpeiderappAPI.csproj", "{7B80FBC1-DDFD-4A52-84FF-1E978278C760}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeiderappPWA", "SpeiderappPWA\SpeiderappPWA.csproj", "{ADD9FD60-640C-4818-A67B-0334D398B64C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +15,9 @@ Global
 		{7B80FBC1-DDFD-4A52-84FF-1E978278C760}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B80FBC1-DDFD-4A52-84FF-1E978278C760}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B80FBC1-DDFD-4A52-84FF-1E978278C760}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADD9FD60-640C-4818-A67B-0334D398B64C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADD9FD60-640C-4818-A67B-0334D398B64C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADD9FD60-640C-4818-A67B-0334D398B64C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADD9FD60-640C-4818-A67B-0334D398B64C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
