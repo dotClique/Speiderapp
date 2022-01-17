@@ -4,6 +4,10 @@ using SpeiderappAPI.Models;
 
 namespace SpeiderappAPI.Profiles
 {
+    /**
+     * <summary>An AutoMapper-profile for configuring how the AutoMapper should convert between
+     * Data Transfer Objects (DTOs) and the data models</summary>
+     */
     public class RequirementsProfile : Profile
     {
         public RequirementsProfile()

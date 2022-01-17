@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace SpeiderappAPI.DataTransferObjects
+﻿namespace SpeiderappAPI.DataTransferObjects
 {
     public class UserDto
     {
-        public long UserID { get; }
+        public long UserID { get; set; }
 
         public string Email { get; set; }
 
