@@ -38,7 +38,7 @@ namespace SpeiderappAPI.Database
                 .WithOne(rp => rp.Requirer);
 
             modelBuilder.Entity<Requirement>()
-                .HasDiscriminator(r => r.Discriminator);
+                .HasDiscriminator(r => r.RequirementType);
 
             modelBuilder.Entity<Resource>()
                 .HasOne(r => r.Requirement)
