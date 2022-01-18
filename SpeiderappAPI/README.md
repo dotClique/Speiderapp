@@ -10,21 +10,20 @@ Speiderapp API back-end
 * [Docker](https://docker.com)
 
 
-## Clone and run install-script
+## Clone and restore project
 
 ```bash
 # Clone the repo (example uses ssh)
 git clone git@github.com:dotClique/SpeiderappAPI.git
-cd ./SpeiderappAPI
 
-# Run install script
-yarn install
+# Install dependencies, setup hooks, restore projects etc.
+make restore
 ```
 
 
 ## Prepare and start development server (in Docker)
 
-The service is run in Docker.
+The service is run in Docker, but setup is run outside.
 
 Before initial setup, create the necessary secrets-files:
 ```bash
