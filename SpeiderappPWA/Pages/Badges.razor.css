@@ -4,6 +4,9 @@
     align-content: flex-start;
 }
 
+a:link {
+    text-decoration: none;
+}
 .badge-table.list {
     flex-wrap: nowrap;
     flex-direction: column;
@@ -68,17 +71,15 @@
     width: min(100%, 600px);
     height: 150px;
     grid-template-columns: 150px 1fr;
-    grid-template-rows: 2fr 6fr 1fr;
+    grid-template-rows: 2fr 6fr 2fr;
     grid-template-areas:
     ". title"
-    ". description";
-    ". requirements"
+    ". description"
+    ". requirements";
 }
 
-
-
 .badge-background {
-    border-radius: 5%;
+    border-radius: 5px;
     background-color: #E2E2E2;
     position: absolute;
     width: 100%;
@@ -175,6 +176,9 @@
     overflow: hidden;
 }
 
+.badge-requirements.list {
+    justify-content: flex-end;
+}
 .badge-requirements.list .dot{
     margin-left: 1px;
 }
