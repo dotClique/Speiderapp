@@ -1,0 +1,291 @@
+﻿.badge-table {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+a:link {
+    text-decoration: none;
+}
+.badge-table.list {
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+.red {
+    background-color: #acacac;
+}
+
+.green {
+    background-color: #5b9765;
+}
+.dot {
+    height: 25px;
+    width: 25px;
+
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.list {
+    border-radius: 5%;
+}
+.separator {
+    height: 4px;
+    width: 100%;
+}
+.inline-line {
+    width: 100%;
+}
+
+.fa-th {
+    margin-right: 10px;
+}
+
+.fa-list {
+    
+}
+
+.selected {
+    color: #3a0647;
+}
+.badge-element {
+    position: relative;
+    transition: all 0s ease;
+    color:black;
+    margin: 5px;
+    display: grid;
+    width: 200px;
+    height: 200px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 4fr 0fr 0fr;
+    grid-template-areas:
+    "title title"
+    ". ."
+    "description description"
+    "requirements requirements";
+}
+
+.badge-element.list {
+    transition-duration: 0s;
+    display: grid;
+    width: min(100%, 600px);
+    height: 150px;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: 2fr 6fr 2fr;
+    grid-template-areas:
+    ". title"
+    ". description"
+    ". requirements";
+}
+
+.badge-background {
+    border-radius: 5px;
+    background-color: #E2E2E2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+}
+.badge-image-container {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    top: 20%;
+    z-index: -1;
+}
+
+.badge-image-container.list {
+    width: 150px;
+    height:150px;
+    top: 0;
+}
+
+.badge-element:hover .badge-image-container {
+    transition: all 0.5s linear;
+    opacity: 0.2;
+}
+
+.badge-element.list:hover .badge-image-container {
+    opacity: 1;
+}
+.badge-image {
+    padding: 3px;
+    grid-area: image;
+    overflow: hidden;
+}
+
+.badge-image-background {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    top: 20%;
+    z-index: -2;
+    border-radius: 50%;
+    visibility: hidden;
+}
+
+.badge-image-background svg path{
+    stroke: transparent;
+    fill: transparent;
+}
+.badge-image-background svg path{
+    fill: #5b9765;;
+    stroke: #5b9765;;
+}
+
+.badge-image-background.list {
+    width: 150px;
+    height:150px;
+    top: 0;
+    visibility: visible;
+}
+
+.badge-image img {
+    display: block;
+    margin: auto;
+    max-width:100%;
+    max-height:100%;
+    border-radius: 50%;
+}
+
+.badge-title {
+    transition: all 1s ease;
+    font-size: 1.2rem;
+    margin: auto;
+    padding: 4px;
+    grid-area: title;
+    font-weight: bold;
+    color: #231f32;
+    text-transform: uppercase;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.badge-title.list {
+    margin: 0;
+    text-align: left;
+}
+
+.badge-requirements {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+    grid-area: requirements;
+    overflow: hidden;
+}
+
+.badge-requirements.list {
+    justify-content: flex-end;
+}
+.badge-requirements.list .dot{
+    margin-left: 1px;
+}
+.badge-description {
+    opacity: 0;
+    padding: 4px;
+    margin: auto;
+    grid-area: description;
+    text-overflow: hidden;
+}
+
+.badge-description.list {
+    margin: 0;
+}
+.badge-description.list {
+    opacity: 1;
+    overflow: hidden;
+}
+
+
+.badge-checkmark {
+    position: absolute;
+    display: flex;
+    left: 85%;
+    top: 5%;
+    width: 10%;
+    height: 10%;
+    align-items: center;
+    justify-content: center;
+    background-color: green;
+    border-radius: 50%;
+}
+
+.badge-checkmark i {
+    text-align: center;
+    color: #E2E2E2;
+}
+
+.badge-checkmark.list {
+    height: 20px;
+    width: 20px;
+    left:calc(100% - 30px);
+}
+
+.badge-element:hover {
+    transition: all 2s ease;
+    grid-template-rows: 1fr 0fr 4fr 2fr;
+}
+
+.badge-element.list:hover {
+    grid-template-rows: 1fr 3fr;
+}
+
+.badge-element:hover .badge-description {
+    transition: all 0.75s ease;
+    opacity: 1;
+}
+
+.search-bar{
+    width:100%;
+    height: 30px;
+}
+.filter{
+    float: left;
+    line-height: 180%;
+    margin: 0 10px 0 0;
+    padding: 2px;
+}
+.filter:hover{
+    background-color: #e4e4e4;
+}
+
+.search-form{
+    margin: auto;
+    max-height:100%;
+}
+.search-input{
+    margin: auto;
+    max-height:100%;
+}
+.search-button{
+    background-color: #e4e4e4;
+    border: none;
+    padding: 6px 10px;
+    font-size: 16px;
+    margin-right: 16px;
+    max-height:100%;
+}
+
+.filter-options{
+    display: flex;
+    flex-wrap: wrap;
+    height: 75px;
+    overflow:hidden;
+}
+.collapsed{
+    height:0;
+}
+.filter-option{
+    width: 200px;
+    margin-right: 5px;
+    background-color: #dbdbdb;
+    overflow: hidden;
+}
+
+@supports (-moz-appearance:none) {
+    .badge-element:hover .badge-description {
+        transition: all 2s ease;
+    }
+}
