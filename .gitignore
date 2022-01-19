@@ -3,6 +3,9 @@
 **/.idea/*
 **/.vscode/*
 
+# Ignore Python Virtual Environment
+venv/
+
 # Ignore DB secrets
 **/secrets
 
