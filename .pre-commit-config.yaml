@@ -14,5 +14,6 @@ repos:
     -   id: dotnet-format
         name: dotnet-format
         language: system
-        entry: dotnet format --include
+        entry: dotnet format --severity info --include
+        verbose: true
         types_or: ["c#", "vb"]

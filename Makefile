@@ -10,4 +10,4 @@ restore:
 	dotnet restore
 	pre-commit install
 format:
-	dotnet format --fix-whitespace --fix-style info --fix-analyzers info
+	dotnet format --severity info
