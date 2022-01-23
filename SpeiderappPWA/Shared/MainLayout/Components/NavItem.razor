@@ -1,0 +1,15 @@
+﻿<li class="nav-item px-3">
+    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+        <span class="oi @Icon" aria-hidden="true"></span> @ChildContent
+    </NavLink>
+</li>
+
+@code {
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Icon { get; set; }
+
+}
