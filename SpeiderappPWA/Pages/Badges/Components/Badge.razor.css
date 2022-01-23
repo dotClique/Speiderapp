@@ -7,6 +7,10 @@
     background-color: #5b9765;
 }
 
+a:link {
+    text-decoration: none;
+}
+
 .badge-element {
     position: relative;
     transition: all 0s ease;
@@ -135,7 +139,7 @@
     display: flex;
     flex-wrap: wrap;
     align-content: space-around;
-    justify-content: space-around;
+    justify-content: end;
     grid-area: requirements;
     overflow: hidden;
 }
