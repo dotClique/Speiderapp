@@ -1,0 +1,6 @@
+@media (min-width: 768px) {
+    .collapse {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+    }
+}

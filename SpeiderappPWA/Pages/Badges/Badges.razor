@@ -1,0 +1,53 @@
+@page "/badges" 
+@using SpeiderappPWA.Pages.Badges.Components
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<h1>Badges</h1>
+
+<p>This component demonstrates fetching data from the API.</p>
+
+<span class="search-bar">
+    <button  @onclick="ToggleFilter" class="filter"><i class="fa fa-filter"></i></button>
+    <form class="search-form">
+        <input class="search-input" type="text" placeholder="Search">
+        <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="filter-options @collapsed">
+        <div class="filter-option">
+            @collapsed
+            Option 1
+            <br>
+            <input type="text">
+        </div>
+        <div class="filter-option">
+            Option 2
+            <br>
+            <input type="checkbox">
+        </div>
+        <div class="filter-option">
+            Option 3
+            <br>
+            <input type="checkbox">
+        </div>
+    </div>
+</span>
+
+
+
+<div class="separator"><hr class="inline-line"></div>
+<i class="fa fa-th @gridSelected" @onclick="GridView"></i><i class="fa fa-list @listSelected" @onclick="ListView"></i>
+<br>
+<br>
+@if (badges == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="badge-table @list">
+
+        @foreach (var badge in badges)
+        {
+            <Badge name="@badge.Name" id="@badge.Id" description="@badge.Description" list="@list" logo="@BadgeLogo(badge.Image)" complete="@badge.IsComplete"/>
+        }
+    </div>
+}
