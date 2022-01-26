@@ -28,7 +28,9 @@ namespace SpeiderappAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RequirementDto>>> GetRequirements()
         {
-            return await _context.Requirements.Where(requirement => requirement.RequirementType == nameof(Requirement))
+            return await _context.Requirements
+                .Where(requirement => requirement.DeletedAt is null)
+                .Where(requirement => requirement.RequirementType == nameof(Requirement))
                 .ProjectTo<RequirementDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 

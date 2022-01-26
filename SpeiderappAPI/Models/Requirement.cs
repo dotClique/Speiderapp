@@ -18,6 +18,10 @@ namespace SpeiderappAPI.Models
         public virtual User Author { get; set; } = null!;
         public DateTime PublishTime { get; init; }
         public string RequirementType { get; set; }
+        public long Version { get; set; } // To be incremented with every edit
+        public DateTime UpdatedAt { get; set; }
+        public DateTime? ArchivedAt { get; set; } // If not null, the instance is considered Archived
+        public DateTime? DeletedAt { get; set; } // If not null, the instance is considered Deleted
         public virtual ICollection<Resource> Resources { get; set; } = null!;
         public virtual ICollection<RequirementPrerequisite> RequiredBy { get; set; } = null!;
         public virtual ICollection<RequirementPrerequisite> Requiring { get; set; } = null!;
