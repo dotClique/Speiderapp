@@ -1,4 +1,4 @@
-namespace SpeiderappAPI.Models
+﻿namespace SpeiderappAPI.Models
 {
     public class Resource
     {

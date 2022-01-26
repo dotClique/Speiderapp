@@ -1,4 +1,4 @@
-namespace SpeiderappPWA.Models
+﻿namespace SpeiderappPWA.Models
 {
     public class Badge
     {

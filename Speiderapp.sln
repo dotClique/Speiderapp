@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeiderappAPI", "SpeiderappAPI\SpeiderappAPI.csproj", "{7B80FBC1-DDFD-4A52-84FF-1E978278C760}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeiderappPWA", "SpeiderappPWA\SpeiderappPWA.csproj", "{ADD9FD60-640C-4818-A67B-0334D398B64C}"

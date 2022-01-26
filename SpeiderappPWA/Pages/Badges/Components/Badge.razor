@@ -34,7 +34,7 @@
                 }
                 var taskList = new List<string> {"Gi Espen penger", "Gi Espen et kompliment", "Bytt til python", "Si til Espen hvor vakker han er"};
                 var tooltip = taskList[i % taskList.Count];
-                
+
                 <div class="@color dot @list" title="@tooltip"></div>
             }
         </div>
@@ -46,7 +46,7 @@
         <div class="badge-image-background @list">
 
             @{ fraction = (double) numGreen / (double) numRequirements; }
-            
+
             <svg>
                 <path d="M75,75 L75,0 A75,75 1 0,1 @RightBorderY(fraction), @RightBorderX(fraction) z"></path>
                 @if (fraction > 0.5f)
@@ -56,7 +56,7 @@
             </svg>
         </div>
         <div class="badge-background @list" style="border-color: @border_color"></div>
-        
+
         @if (complete)
         {
             <div class="badge-checkmark @list"><i class="fa fa-check"></i></div>

@@ -1,14 +1,14 @@
-using Microsoft.AspNetCore.Components;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 
 namespace SpeiderappPWA.Pages.Badges
 {
     public partial class Badges : ComponentBase
     {
         [Inject]
-        private HttpClient Http {get; set; }
+        private HttpClient Http { get; set; }
         private Models.Badge[] badges;
 
         protected override async Task OnInitializedAsync()
@@ -27,7 +27,7 @@ namespace SpeiderappPWA.Pages.Badges
                 return "https://via.placeholder.com/150";
             }
         }
-        
+
         private string collapsed = "collapsed";
         private string gridSelected = "selected";
         private string listSelected = "";

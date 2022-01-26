@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 using SpeiderappAPI.Models;
@@ -27,7 +27,7 @@ namespace SpeiderappAPI.Database
         {
             modelBuilder.Entity<TaggedWith>().HasKey(tw => new { tw.BadgeID, tw.TagID });
 
-            modelBuilder.Entity<RequirementPrerequisite>().HasKey(rp => new {rp.RequirerID, rp.RequireeID});
+            modelBuilder.Entity<RequirementPrerequisite>().HasKey(rp => new { rp.RequirerID, rp.RequireeID });
 
             modelBuilder.Entity<Requirement>()
                 .HasMany(r => r.RequiredBy)
