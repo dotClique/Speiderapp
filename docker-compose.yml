@@ -42,7 +42,7 @@ services:
       - /source/obj
       - /source/SpeiderappAPI/bin
       - /source/SpeiderappAPI/obj
-    entrypoint: ["dotnet", "watch", "run", "-p", "SpeiderappAPI"]
+    command: ["dotnet", "watch", "run", "--project", "SpeiderappAPI"]
     depends_on:
       - database
     secrets:
