@@ -23,7 +23,7 @@ param (
 		ValueFromPipeline = $true,
 		ValueFromPipelineByPropertyName = $true
 		)]
-		[ValidateSet('Help', 'Restore', 'Format', 'Migrate', 'StartDB', 'StartAPI', 'StartPWA')]
+		[ValidateSet('Help', 'Restore', 'Format', 'Migrate', 'StartDB', 'StartAPI', 'StartPWA', 'ActivateVenv', 'DeactivateVenv')]
 		[String]$Action="Help",
 	[Parameter(
 		Mandatory = $false,
@@ -111,6 +111,17 @@ Function ActionStartPWA() {
 		docker-compose up frontend
 	}
 }
+Function ActionActivateVenv() {
+	switch ($OperatingSystem)
+	{
+		"Windows" { ./venv-windows/Scripts/Activate.ps1 }
+		"Mac" { ./venv-linux/bin/Activate.ps1 }
+		"Linux" { ./venv-linuc/bin/Activate.ps1 }
+	}
+}
+Function ActionDeactivateVenv() {
+	deactivate
+}
 
 ######################
 #     The Script     #
@@ -124,4 +135,6 @@ Switch ($Action)
 	"StartDB" { ActionStartDB }
 	"StartAPI" { ActionStartAPI }
 	"StartPWA" { ActionStartPWA }
+	"ActivateVenv" { ActionActivateVenv }
+	"DeactivateVenv" { ActionDeactivateVenv }
 }
