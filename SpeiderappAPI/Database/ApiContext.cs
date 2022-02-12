@@ -18,10 +18,10 @@ namespace SpeiderappAPI.Database
         public DbSet<TaggedWith> TaggedWiths { get; set; } = null!;
         public DbSet<Resource> Resources { get; set; } = null!;
 
-        private IConfiguration _configuration { get; }
+        private IConfiguration Configuration { get; }
 
         public ApiContext(DbContextOptions options, IConfiguration configuration) : base(options)
-            => _configuration = configuration;
+            => Configuration = configuration;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

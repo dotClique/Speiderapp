@@ -7,26 +7,30 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SpeiderappAPI.Database;
 
+#nullable disable
+
 namespace SpeiderappAPI.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    [Migration("20211008173529_fix_seed_datetime")]
-    partial class fix_seed_datetime
+    [Migration("20220126185423_dotnet6_update")]
+    partial class Dotnet6Update
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.9")
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("SpeiderappAPI.Models.Category", b =>
                 {
                     b.Property<long>("CategoryID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("CategoryID"));
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -41,8 +45,9 @@ namespace SpeiderappAPI.Migrations
                 {
                     b.Property<long>("RequirementID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("RequirementID"));
 
                     b.Property<long>("AuthorID")
                         .HasColumnType("bigint");
@@ -51,12 +56,12 @@ namespace SpeiderappAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Discriminator")
+                    b.Property<DateTime>("PublishTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("RequirementType")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<DateTime>("PublishTime")
-                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("RequirementID");
 
@@ -64,7 +69,7 @@ namespace SpeiderappAPI.Migrations
 
                     b.ToTable("Requirements");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Requirement");
+                    b.HasDiscriminator<string>("RequirementType").HasValue("Requirement");
 
                     b.HasData(
                         new
@@ -132,8 +137,9 @@ namespace SpeiderappAPI.Migrations
                 {
                     b.Property<long>("ResourceID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ResourceID"));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -171,8 +177,9 @@ namespace SpeiderappAPI.Migrations
                 {
                     b.Property<long>("TagID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("TagID"));
 
                     b.Property<long>("CategoryID")
                         .HasColumnType("bigint");
@@ -207,8 +214,9 @@ namespace SpeiderappAPI.Migrations
                 {
                     b.Property<long>("UserID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("UserID"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -292,6 +300,23 @@ namespace SpeiderappAPI.Migrations
                             Image = "http://placekitten.com/g/200/200",
                             Title = "Hobby"
                         });
+                });
+
+            modelBuilder.Entity("SpeiderappAPI.Models.MultipleChoice", b =>
+                {
+                    b.HasBaseType("SpeiderappAPI.Models.Requirement");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("integer");
+
+                    b.HasDiscriminator().HasValue("MultipleChoice");
+                });
+
+            modelBuilder.Entity("SpeiderappAPI.Models.UserDefined", b =>
+                {
+                    b.HasBaseType("SpeiderappAPI.Models.Requirement");
+
+                    b.HasDiscriminator().HasValue("UserDefined");
                 });
 
             modelBuilder.Entity("SpeiderappAPI.Models.Requirement", b =>

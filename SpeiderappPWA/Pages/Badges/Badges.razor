@@ -11,9 +11,9 @@
         <input class="search-input" type="text" placeholder="Search">
         <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
     </form>
-    <div class="filter-options @collapsed">
+    <div class="filter-options @_collapsed">
         <div class="filter-option">
-            @collapsed
+            @_collapsed
             Option 1
             <br>
             <input type="text">
@@ -34,20 +34,20 @@
 
 
 <div class="separator"><hr class="inline-line"></div>
-<i class="fa fa-th @gridSelected" @onclick="GridView"></i><i class="fa fa-list @listSelected" @onclick="ListView"></i>
+<i class="fa fa-th @_gridSelected" @onclick="GridView"></i><i class="fa fa-list @_listSelected" @onclick="ListView"></i>
 <br>
 <br>
-@if (badges == null)
+@if (_badges == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    <div class="badge-table @list">
+    <div class="badge-table @_list">
 
-        @foreach (var badge in badges)
+        @foreach (var badge in _badges)
         {
-            <Badge name="@badge.Name" id="@badge.Id" description="@badge.Description" list="@list" logo="@BadgeLogo(badge.Image)" complete="@badge.IsComplete"/>
+            <Badge name="@badge.Name" ID="@badge.Id" Description="@badge.Description" List="@_list" Logo="@BadgeLogo(badge.Image)" Complete="@badge.IsComplete"/>
         }
     </div>
 }

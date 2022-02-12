@@ -6,27 +6,27 @@ namespace SpeiderappPWA.Pages.Badges.Components
     public partial class Badge : ComponentBase
     {
         [Parameter]
-        public string name { get; set; } = "";
+        public string Name { get; set; } = "";
 
         [Parameter]
-        public long id { get; set; } = 0;
-
-
-        [Parameter]
-        public string description { get; set; } = "";
-
-        [Parameter]
-        public string image { get; set; } = "";
-
-        [Parameter]
-        public string list { get; set; } = "";
-
-        [Parameter]
-        public string logo { get; set; } = "";
+        public long ID { get; set; } = 0;
 
 
         [Parameter]
-        public bool complete { get; set; } = false;
+        public string Description { get; set; } = "";
+
+        [Parameter]
+        public string Image { get; set; } = "";
+
+        [Parameter]
+        public string List { get; set; } = "";
+
+        [Parameter]
+        public string Logo { get; set; } = "";
+
+
+        [Parameter]
+        public bool Complete { get; set; } = false;
 
 
         private double RightBorderY(double deg)

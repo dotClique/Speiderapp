@@ -6,17 +6,17 @@
     int numGreen;
     double fraction;
 }
-<a href="/badge/@id">
-    <div class="badge-element @list">
+<a href="/badge/@ID">
+    <div class="badge-element @List">
 
 
-        <div class="badge-title @list">
-            @name
+        <div class="badge-title @List">
+            @Name
         </div>
-        <div class="badge-description @list">
-            @description
+        <div class="badge-description @List">
+            @Description
         </div>
-        <div class="badge-requirements @list">
+        <div class="badge-requirements @List">
             @{
                 numRequirements = random.Next(0, 14);
                 numGreen = 0;
@@ -35,15 +35,15 @@
                 var taskList = new List<string> {"Gi Espen penger", "Gi Espen et kompliment", "Bytt til python", "Si til Espen hvor vakker han er"};
                 var tooltip = taskList[i % taskList.Count];
 
-                <div class="@color dot @list" title="@tooltip"></div>
+                <div class="@color dot @List" title="@tooltip"></div>
             }
         </div>
-        <div class="badge-image-container @list">
+        <div class="badge-image-container @List">
             <div class="badge-image">
-                <img src="@logo" alt="badge @id logo">
+                <img src="@Logo" alt="badge @ID logo">
             </div>
         </div>
-        <div class="badge-image-background @list">
+        <div class="badge-image-background @List">
 
             @{ fraction = (double) numGreen / (double) numRequirements; }
 
@@ -55,11 +55,11 @@
                 }
             </svg>
         </div>
-        <div class="badge-background @list" style="border-color: @border_color"></div>
+        <div class="badge-background @List" style="border-color: @border_color"></div>
 
-        @if (complete)
+        @if (Complete)
         {
-            <div class="badge-checkmark @list"><i class="fa fa-check"></i></div>
+            <div class="badge-checkmark @List"><i class="fa fa-check"></i></div>
         }
     </div>
 </a>
