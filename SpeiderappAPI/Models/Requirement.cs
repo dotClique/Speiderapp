@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using SpeiderappAPI.Models.Interfaces;
 
 namespace SpeiderappAPI.Models
 {
-    public class Requirement
+    public class Requirement : IUpdatable, IArchivable, ISoftDeletable
     {
         public Requirement(string description, DateTime publishTime)
         {
@@ -21,6 +22,9 @@ namespace SpeiderappAPI.Models
         public virtual ICollection<Resource> Resources { get; set; } = null!;
         public virtual ICollection<RequirementPrerequisite> RequiredBy { get; set; } = null!;
         public virtual ICollection<RequirementPrerequisite> Requiring { get; set; } = null!;
+        public DateTime UpdatedAt { get; set; }
+        public DateTime? ArchivedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
 
         public override string ToString()
         {

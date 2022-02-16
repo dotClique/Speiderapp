@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SpeiderappAPI.Models
+﻿namespace SpeiderappAPI.Models
 {
     public class User
     {

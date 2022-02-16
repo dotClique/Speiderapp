@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SpeiderappAPI.Database;
 using SpeiderappAPI.DataTransferObjects;
+using SpeiderappAPI.Models.Interfaces;
 
 namespace SpeiderappAPI.Controllers
 {
@@ -26,14 +28,18 @@ namespace SpeiderappAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ResourceDto>>> GetResource()
         {
-            return await _context.Resources.ProjectTo<ResourceDto>(_mapper.ConfigurationProvider).ToListAsync();
+            return await _context.Resources
+                .ExcludeDeleted()
+                .ProjectTo<ResourceDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
         // GET: api/Resource/<id>
         [HttpGet("{id:long}")]
         public async Task<ActionResult<ResourceDto>> GetResource(long id)
         {
-            var resource = await _context.Resources.FindAsync(id);
+            var resource = await _context.Resources
+                .ExcludeDeleted()
+                .Where(e => e.ResourceID == id).FirstOrDefaultAsync();
 
             if (resource == null)
             {
