@@ -11,7 +11,7 @@
   },
   "lint-staged": {
     "*.cs": [
-      "dotnet dotnet-format --fix-style info --include"
+      "dotnet format --severity info --include"
     ]
   },
   "scripts": {
