@@ -20,7 +20,7 @@ namespace SpeiderappPWA.Pages.Badge
             var badges = await Http.GetFromJsonAsync<Models.Badge[]>("sample-data/badges.json");
 
             if (badges == null) return; // TODO: Handle this error
-            _thisBadge = badges.ToList().Find(badge => badge.Id == Id);
+            _thisBadge = badges.ToList().Find(badge => badge.RequirementID == Id);
         }
     }
 }

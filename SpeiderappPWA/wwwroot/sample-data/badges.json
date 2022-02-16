@@ -1,35 +1,26 @@
 [
     {
-        "id": 1,
-        "name": "walk dogs",
+        "requirementID": 1,
+        "title": "walk dogs",
         "image": "http://placekitten.com/g/150/150",
-        "type": null,
         "description": "take the dogs for a walk?",
-        "author": null,
-        "rootNode": 0,
-        "created_at": null,
-        "isComplete": true
+        "publishTime": "2022-02-16T12:32:33.344Z",
+        "completed": true
     },
     {
-        "id": 2,
-        "name": "do stuff",
-        "image": "http://placekitten.com/g/150/150",
-        "type": null,
-        "description": "I don't know... just do some stuffs...",
-        "author": null,
-        "rootNode": 0,
-        "created_at": null,
-        "isComplete": false
+      "requirementID": 2,
+      "title": "do stuff",
+      "image": "http://placekitten.com/g/150/150",
+      "description": "I don't know... just do some stuffs...",
+      "publishTime": "2022-02-16T12:32:33.344Z",
+      "completed": false
     },
-    {
-        "id": 3,
-        "name": "jump up and down",
-        "image": null,
-        "type": null,
-        "description": null,
-        "author": null,
-        "rootNode": 0,
-        "created_at": null,
-        "isComplete": false
-    }
+  {
+    "requirementID": 3,
+    "title": "jump up and down",
+    "image": null,
+    "description": null,
+    "publishTime": "2022-02-16T12:32:33.344Z",
+    "completed": false
+  }
 ]

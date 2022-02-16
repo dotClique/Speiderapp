@@ -47,7 +47,7 @@ else
 
         @foreach (var badge in badges)
         {
-            <BadgeItem name="@badge.Name" id="@badge.Id" description="@badge.Description" list="@list" logo="@BadgeLogo(badge.Image)" complete="@badge.IsComplete"/>
+            <BadgeItem name="@badge.Title" id="@badge.RequirementID" description="@badge.Description" list="@list" logo="@BadgeLogo(badge.Image)" complete="@badge.Completed"/>
         }
     </div>
 }
