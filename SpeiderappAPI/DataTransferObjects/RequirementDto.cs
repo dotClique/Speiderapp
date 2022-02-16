@@ -9,7 +9,7 @@ namespace SpeiderappAPI.DataTransferObjects
         public string Description { get; set; } = null!;
         public long AuthorID { get; set; }
         public DateTime PublishTime { get; set; }
-        public string Discriminator { get; set; } = null!;
+        public string RequirementType { get; set; } = null!;
         public ICollection<RequirementResourceDto> Resources { get; set; } = null!;
         public ICollection<RequirementRequiredByDto> RequiredBy { get; set; } = null!;
         public ICollection<RequirementRequiringDto> Requiring { get; set; } = null!;
