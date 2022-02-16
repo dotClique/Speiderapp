@@ -1,15 +1,12 @@
-﻿@page "/badge/{Id}"
+﻿@page "/badge/{id:int}"
 <div>
-    <h3>Badge </h3>
-    <h5>Hello</h5>
-    <div>@Id</div>
-    <div>Hei</div>
+    
+    <h1>Badge</h1>
+    <h3>@_thisBadge.Name</h3>
+    <div>@_thisBadge.Description</div>
+    
 </div>
 
 @code {
-    
-    [Parameter]
-    public string Id { get; set; }
-    
 
 }
