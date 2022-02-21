@@ -11,7 +11,7 @@ namespace SpeiderappAPI.Migrations
 {
     [DbContext(typeof(ApiContext))]
     [Migration("20220117170808_rename_requirement_dicriminator")]
-    partial class rename_requirement_dicriminator
+    partial class RenameRequirementDiscriminator
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

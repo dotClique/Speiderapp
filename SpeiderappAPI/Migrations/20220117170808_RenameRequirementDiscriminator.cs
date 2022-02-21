@@ -2,7 +2,7 @@
 
 namespace SpeiderappAPI.Migrations
 {
-    public partial class rename_requirement_dicriminator : Migration
+    public partial class RenameRequirementDiscriminator : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

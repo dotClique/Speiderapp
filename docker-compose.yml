@@ -42,11 +42,28 @@ services:
       - /source/obj
       - /source/SpeiderappAPI/bin
       - /source/SpeiderappAPI/obj
-    entrypoint: ["dotnet", "watch", "run", "-p", "SpeiderappAPI"]
+    command: ["dotnet", "watch", "run", "--project", "SpeiderappAPI", "--environment", "Development"]
     depends_on:
       - database
     secrets:
       - SPEIDERAPP__DB_PASS
+  frontend:
+    image: mcr.microsoft.com/dotnet/sdk:6.0
+    profiles:
+      - development
+    ports:
+      - "3000-3001:3000-3001"
+    working_dir: /source
+    volumes:
+      - ./SpeiderappPWA:/source
+      # Excluding the .docker-directory from the container
+      - /source/.docker
+      # Excluding compiled files from the container, separating the host (Windows) and container (Linux)
+      - /source/bin
+      - /source/obj
+      - /source/SpeiderappAPI/bin
+      - /source/SpeiderappAPI/obj
+    command: [ "dotnet", "watch", "run" ]
 secrets:
   POSTGRES__ROOT_PASS:
     file: ./.docker/secrets/POSTGRES__ROOT_PASS

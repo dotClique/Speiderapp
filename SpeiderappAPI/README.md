@@ -5,26 +5,27 @@ Speiderapp API back-end
 # How to: *develop*
 
 ## Prerequisites:
-* [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0)
-* [Node.js](https://nodejs.org/en/)
+* [.NET 6.0](https://dotnet.microsoft.com/download/dotnet/6.0)
 * [Docker](https://docker.com)
+* [Powershell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell)
 
 
-## Clone and run install-script
+## Clone and restore project
 
 ```bash
 # Clone the repo (example uses ssh)
 git clone git@github.com:dotClique/SpeiderappAPI.git
-cd ./SpeiderappAPI
 
-# Run install script
-yarn install
+# If you are using Powershell on Windows, Mac or Linux, you can use the App.ps1-script:
+./App.ps1 Restore
+
+# If you don't use Powershell, you are left to interpretting the script for yourself...
 ```
 
 
 ## Prepare and start development server (in Docker)
 
-The service is run in Docker.
+The service is run in Docker, but setup is run outside.
 
 Before initial setup, create the necessary secrets-files:
 ```bash
@@ -39,24 +40,23 @@ nano .docker/secrets/SPEIDERAPP__DB_PASS
 Then perform the necessary database setup
 ```bash
 # Start database-container
-docker-compose up -d database
+./App.ps1 StartDB
 
 # Run migrations to populate the database
-dotnet tool restore
-dotnet ef database update --project SpeiderappAPI
+./App.ps1 Migrate
 ```
 
-Then start the backend
+Then start the API
 ```bash
-# Start the backend-container
-docker-compose up -d backend
+# Start the API-container
+./App.ps1 StartAPI
 ```
 
 
 ## Formatting
 See [Code formatting](#code-formatting) for details.
 ```bash
-dotnet format -s info
+./App.ps1 Format
 ```
 
 ## Routes
@@ -101,21 +101,6 @@ In cases where one does minor changes that don't affect behavior (like a spellin
 
 
 # Tips & Tricks
-
-## Code formatting
-We're using [dotnet-format](https://www.nuget.org/packages/dotnet-format/) for automatic formatting.
-Formatting rules are defined in `.editorconfig`.
-```bash
-# Make sure tools are installed
-dotnet tool restore
-
-# Run dotnet-format and fix all issues
-# `--fix-style` may be replaced with `-s` for short
-dotnet format --fix-style info
-
-# Run dotnet-format check for pre-commit hooks etcetera
-dotnet format --fix-style info --check
-```
 
 ## Creating a controller
 Replace **<Badge>** in the following snippet with whatever model/object you're creating a controller for:

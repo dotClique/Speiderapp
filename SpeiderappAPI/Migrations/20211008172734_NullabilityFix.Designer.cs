@@ -10,8 +10,8 @@ using SpeiderappAPI.Database;
 namespace SpeiderappAPI.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    [Migration("20210830202724_initial")]
-    partial class initial
+    [Migration("20211008172734_nullability_fix")]
+    partial class NullabilityFix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,21 +72,21 @@ namespace SpeiderappAPI.Migrations
                             RequirementID = -2L,
                             AuthorID = -1L,
                             Description = "Actually chop wood",
-                            PublishTime = new DateTime(2021, 8, 30, 22, 27, 23, 271, DateTimeKind.Unspecified).AddTicks(2065)
+                            PublishTime = new DateTime(2021, 10, 8, 19, 27, 33, 816, DateTimeKind.Unspecified).AddTicks(5283)
                         },
                         new
                         {
                             RequirementID = -5L,
                             AuthorID = -1L,
                             Description = "Stoff-handling",
-                            PublishTime = new DateTime(2021, 8, 28, 22, 27, 23, 271, DateTimeKind.Unspecified).AddTicks(2186)
+                            PublishTime = new DateTime(2021, 10, 6, 19, 27, 33, 816, DateTimeKind.Unspecified).AddTicks(5357)
                         },
                         new
                         {
                             RequirementID = -6L,
                             AuthorID = -3L,
                             Description = "Sytråd-shopping",
-                            PublishTime = new DateTime(2021, 8, 30, 7, 27, 23, 271, DateTimeKind.Unspecified).AddTicks(2196)
+                            PublishTime = new DateTime(2021, 10, 8, 4, 27, 33, 816, DateTimeKind.Unspecified).AddTicks(5365)
                         });
                 });
 
@@ -270,7 +270,7 @@ namespace SpeiderappAPI.Migrations
                             RequirementID = -1L,
                             AuthorID = -1L,
                             Description = "This is a cool badge for chucking wood.",
-                            PublishTime = new DateTime(2021, 8, 30, 22, 27, 23, 270, DateTimeKind.Unspecified).AddTicks(6919),
+                            PublishTime = new DateTime(2021, 10, 8, 19, 27, 33, 816, DateTimeKind.Unspecified).AddTicks(3685),
                             Image = "3aas!2d=",
                             Title = "Woodchuck"
                         },
@@ -279,7 +279,7 @@ namespace SpeiderappAPI.Migrations
                             RequirementID = -3L,
                             AuthorID = -2L,
                             Description = "Beskrivende test-tekst",
-                            PublishTime = new DateTime(2021, 8, 30, 22, 27, 23, 271, DateTimeKind.Unspecified).AddTicks(1704),
+                            PublishTime = new DateTime(2021, 10, 8, 19, 27, 33, 816, DateTimeKind.Unspecified).AddTicks(5059),
                             Image = "http://placekitten.com/g/200/300",
                             Title = "Testing"
                         },
@@ -288,7 +288,7 @@ namespace SpeiderappAPI.Migrations
                             RequirementID = -4L,
                             AuthorID = -1L,
                             Description = "Hobby-baserte aktiviteter for alle aldre",
-                            PublishTime = new DateTime(2021, 8, 27, 20, 27, 23, 271, DateTimeKind.Unspecified).AddTicks(1750),
+                            PublishTime = new DateTime(2021, 10, 5, 17, 27, 33, 816, DateTimeKind.Unspecified).AddTicks(5079),
                             Image = "http://placekitten.com/g/200/200",
                             Title = "Hobby"
                         });

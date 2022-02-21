@@ -1,4 +1,4 @@
-namespace SpeiderappAPI.Utilities
+﻿namespace SpeiderappAPI.Utilities
 {
     public class Constants
     {

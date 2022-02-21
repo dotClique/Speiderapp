@@ -1,19 +1,19 @@
-using Microsoft.AspNetCore.Components;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 
 namespace SpeiderappPWA.Pages.Badges
 {
     public partial class Badges : ComponentBase
     {
         [Inject]
-        private HttpClient Http {get; set; }
-        private Models.Badge[] badges;
+        private HttpClient Http { get; set; }
+        private Models.Badge[] _badges;
 
         protected override async Task OnInitializedAsync()
         {
-            badges = await Http.GetFromJsonAsync<Models.Badge[]>("sample-data/badges.json");
+            _badges = await Http.GetFromJsonAsync<Models.Badge[]>("sample-data/badges.json");
         }
 
         private string BadgeLogo(string img)
@@ -27,35 +27,35 @@ namespace SpeiderappPWA.Pages.Badges
                 return "https://via.placeholder.com/150";
             }
         }
-        
-        private string collapsed = "collapsed";
-        private string gridSelected = "selected";
-        private string listSelected = "";
-        private string list = "";
+
+        private string _collapsed = "collapsed";
+        private string _gridSelected = "selected";
+        private string _listSelected = "";
+        private string _list = "";
         private void ToggleFilter()
         {
-            if (collapsed == "")
+            if (_collapsed == "")
             {
-                collapsed = "collapsed";
+                _collapsed = "collapsed";
             }
             else
             {
-                collapsed = "";
+                _collapsed = "";
             }
         }
 
         private void ListView()
         {
-            list = "list";
-            gridSelected = "";
-            listSelected = "selected";
+            _list = "list";
+            _gridSelected = "";
+            _listSelected = "selected";
         }
 
         private void GridView()
         {
-            list = "";
-            gridSelected = "selected";
-            listSelected = "";
+            _list = "";
+            _gridSelected = "selected";
+            _listSelected = "";
         }
     }
 }

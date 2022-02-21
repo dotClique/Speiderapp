@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SpeiderappAPI.Migrations
 {
-    public partial class nullability_fix : Migration
+    public partial class FixSeedDatetime : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,42 +12,42 @@ namespace SpeiderappAPI.Migrations
                 keyColumn: "RequirementID",
                 keyValue: -4L,
                 column: "PublishTime",
-                value: new DateTime(2021, 10, 5, 17, 27, 33, 816, DateTimeKind.Unspecified).AddTicks(5079));
+                value: new DateTime(2021, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.UpdateData(
                 table: "Requirements",
                 keyColumn: "RequirementID",
                 keyValue: -3L,
                 column: "PublishTime",
-                value: new DateTime(2021, 10, 8, 19, 27, 33, 816, DateTimeKind.Unspecified).AddTicks(5059));
+                value: new DateTime(2021, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.UpdateData(
                 table: "Requirements",
                 keyColumn: "RequirementID",
                 keyValue: -1L,
                 column: "PublishTime",
-                value: new DateTime(2021, 10, 8, 19, 27, 33, 816, DateTimeKind.Unspecified).AddTicks(3685));
+                value: new DateTime(2021, 10, 8, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.UpdateData(
                 table: "Requirements",
                 keyColumn: "RequirementID",
                 keyValue: -6L,
                 column: "PublishTime",
-                value: new DateTime(2021, 10, 8, 4, 27, 33, 816, DateTimeKind.Unspecified).AddTicks(5365));
+                value: new DateTime(2021, 10, 7, 9, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.UpdateData(
                 table: "Requirements",
                 keyColumn: "RequirementID",
                 keyValue: -5L,
                 column: "PublishTime",
-                value: new DateTime(2021, 10, 6, 19, 27, 33, 816, DateTimeKind.Unspecified).AddTicks(5357));
+                value: new DateTime(2021, 10, 6, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.UpdateData(
                 table: "Requirements",
                 keyColumn: "RequirementID",
                 keyValue: -2L,
                 column: "PublishTime",
-                value: new DateTime(2021, 10, 8, 19, 27, 33, 816, DateTimeKind.Unspecified).AddTicks(5283));
+                value: new DateTime(2021, 10, 7, 19, 0, 0, 0, DateTimeKind.Unspecified));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -57,42 +57,42 @@ namespace SpeiderappAPI.Migrations
                 keyColumn: "RequirementID",
                 keyValue: -4L,
                 column: "PublishTime",
-                value: new DateTime(2021, 10, 5, 17, 25, 42, 845, DateTimeKind.Unspecified).AddTicks(5525));
+                value: new DateTime(2021, 8, 27, 20, 27, 23, 271, DateTimeKind.Unspecified).AddTicks(1750));
 
             migrationBuilder.UpdateData(
                 table: "Requirements",
                 keyColumn: "RequirementID",
                 keyValue: -3L,
                 column: "PublishTime",
-                value: new DateTime(2021, 10, 8, 19, 25, 42, 845, DateTimeKind.Unspecified).AddTicks(5507));
+                value: new DateTime(2021, 8, 30, 22, 27, 23, 271, DateTimeKind.Unspecified).AddTicks(1704));
 
             migrationBuilder.UpdateData(
                 table: "Requirements",
                 keyColumn: "RequirementID",
                 keyValue: -1L,
                 column: "PublishTime",
-                value: new DateTime(2021, 10, 8, 19, 25, 42, 845, DateTimeKind.Unspecified).AddTicks(4632));
+                value: new DateTime(2021, 8, 30, 22, 27, 23, 270, DateTimeKind.Unspecified).AddTicks(6919));
 
             migrationBuilder.UpdateData(
                 table: "Requirements",
                 keyColumn: "RequirementID",
                 keyValue: -6L,
                 column: "PublishTime",
-                value: new DateTime(2021, 10, 8, 4, 25, 42, 845, DateTimeKind.Unspecified).AddTicks(5710));
+                value: new DateTime(2021, 8, 30, 7, 27, 23, 271, DateTimeKind.Unspecified).AddTicks(2196));
 
             migrationBuilder.UpdateData(
                 table: "Requirements",
                 keyColumn: "RequirementID",
                 keyValue: -5L,
                 column: "PublishTime",
-                value: new DateTime(2021, 10, 6, 19, 25, 42, 845, DateTimeKind.Unspecified).AddTicks(5706));
+                value: new DateTime(2021, 8, 28, 22, 27, 23, 271, DateTimeKind.Unspecified).AddTicks(2186));
 
             migrationBuilder.UpdateData(
                 table: "Requirements",
                 keyColumn: "RequirementID",
                 keyValue: -2L,
                 column: "PublishTime",
-                value: new DateTime(2021, 10, 8, 19, 25, 42, 845, DateTimeKind.Unspecified).AddTicks(5668));
+                value: new DateTime(2021, 8, 30, 22, 27, 23, 271, DateTimeKind.Unspecified).AddTicks(2065));
         }
     }
 }

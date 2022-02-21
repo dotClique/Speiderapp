@@ -1,32 +1,32 @@
-﻿using Microsoft.AspNetCore.Components;
-using System;
+﻿using System;
+using Microsoft.AspNetCore.Components;
 
 namespace SpeiderappPWA.Pages.Badges.Components
 {
     public partial class Badge : ComponentBase
     {
         [Parameter]
-        public string name { get; set; } = "";
-    
+        public string Name { get; set; } = "";
+
         [Parameter]
-        public long id { get; set; } = 0;
-    
-    
+        public long ID { get; set; } = 0;
+
+
         [Parameter]
-        public string description { get; set; } = "";
-    
+        public string Description { get; set; } = "";
+
         [Parameter]
-        public string image { get; set; } = "";
-    
+        public string Image { get; set; } = "";
+
         [Parameter]
-        public string list { get; set; } = "";
-    
+        public string List { get; set; } = "";
+
         [Parameter]
-        public string logo { get; set; } = "";
-    
-        
+        public string Logo { get; set; } = "";
+
+
         [Parameter]
-        public bool complete { get; set; } = false;
+        public bool Complete { get; set; } = false;
 
 
         private double RightBorderY(double deg)
@@ -35,7 +35,7 @@ namespace SpeiderappPWA.Pages.Badges.Components
             {
                 return 75.0;
             }
-            return Math.Sin(-deg * Math.PI * 2+Math.PI)*75+75;
+            return Math.Sin(-deg * Math.PI * 2 + Math.PI) * 75 + 75;
         }
         private double RightBorderX(double deg)
         {
@@ -43,7 +43,7 @@ namespace SpeiderappPWA.Pages.Badges.Components
             {
                 return 150;
             }
-            return Math.Cos(-deg * Math.PI * 2+Math.PI)*75+75;
+            return Math.Cos(-deg * Math.PI * 2 + Math.PI) * 75 + 75;
         }
         private double LeftBorderY(double deg)
         {
@@ -51,7 +51,7 @@ namespace SpeiderappPWA.Pages.Badges.Components
             {
                 return 150.0;
             }
-            return Math.Sin(-deg * Math.PI * 2+Math.PI)*75+75;
+            return Math.Sin(-deg * Math.PI * 2 + Math.PI) * 75 + 75;
         }
         private double LeftBorderX(double deg)
         {
@@ -59,7 +59,7 @@ namespace SpeiderappPWA.Pages.Badges.Components
             {
                 return 0;
             }
-            return Math.Cos(-deg * Math.PI * 2+Math.PI)*75+75;
+            return Math.Cos(-deg * Math.PI * 2 + Math.PI) * 75 + 75;
         }
     }
 }

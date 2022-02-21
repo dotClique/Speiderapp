@@ -3,6 +3,11 @@
 **/.idea/*
 **/.vscode/*
 
+# Ignore Python Virtual Environment
+venv/
+venv-windows/
+venv-linux/
+
 # Ignore DB secrets
 **/secrets
 

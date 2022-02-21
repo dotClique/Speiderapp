@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SpeiderappAPI.Migrations
 {
-    public partial class dotnet6_update : Migration
+    public partial class Dotnet6Update : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

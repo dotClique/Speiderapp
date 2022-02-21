@@ -2,7 +2,7 @@
 
 namespace SpeiderappAPI.Migrations
 {
-    public partial class requirements : Migration
+    public partial class Requirements : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

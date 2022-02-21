@@ -42,14 +42,14 @@ namespace SpeiderappAPI.Database
             modelBuilder.Entity<Requirement>().HasData(
                 chopWood,
                 new Requirement("Stoff-handling", dateTime1.AddDays(-2)) { RequirementID = -5L, AuthorID = ozzie.UserID },
-                new Requirement("Sytråd-shopping", dateTime1.AddHours(-15)) {RequirementID = -6L, AuthorID = -3L}
+                new Requirement("Sytråd-shopping", dateTime1.AddHours(-15)) { RequirementID = -6L, AuthorID = -3L }
             );
 
             var prerequisite = new { RequirerID = woodchuck.RequirementID, RequireeID = chopWood.RequirementID, IsAdvisory = false };
             modelBuilder.Entity<RequirementPrerequisite>().HasData(
                 prerequisite,
                 new RequirementPrerequisite(true) { RequirerID = -4L, RequireeID = -5L },
-                new RequirementPrerequisite(false) {RequirerID = -4L, RequireeID = -6L}
+                new RequirementPrerequisite(false) { RequirerID = -4L, RequireeID = -6L }
             );
 
             Resource aktivitetsbanken = new(-1L, "Aktivitetsbanken", "Oversikt over aktiviteter og merker i KMSpeideren", "https://kmspeider.no/aktivitetsbanken")

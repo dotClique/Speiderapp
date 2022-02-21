@@ -11,7 +11,7 @@ namespace SpeiderappAPI.Migrations
 {
     [DbContext(typeof(ApiContext))]
     [Migration("20211218230949_requirements")]
-    partial class requirements
+    partial class Requirements
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

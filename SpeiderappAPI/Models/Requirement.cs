@@ -17,7 +17,7 @@ namespace SpeiderappAPI.Models
         public long AuthorID { get; set; }
         public virtual User Author { get; set; } = null!;
         public DateTime PublishTime { get; init; }
-        public string RequirementType { get; set; }
+        public string RequirementType { get; set; } = null!;
         public virtual ICollection<Resource> Resources { get; set; } = null!;
         public virtual ICollection<RequirementPrerequisite> RequiredBy { get; set; } = null!;
         public virtual ICollection<RequirementPrerequisite> Requiring { get; set; } = null!;
