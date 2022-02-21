@@ -43,7 +43,12 @@
         </div>
         <div class="badge-image-background @list">
 
-            @{ fraction = (double) numGreen / (double) numRequirements; }
+            @{ fraction = (double) numGreen / (double) numRequirements;
+                if (Double.IsNaN(fraction))
+                {
+                    fraction = 1;
+                }
+            }
             
             <svg>
                 <path d="M75,75 L75,0 A75,75 1 0,1 @RightBorderY(fraction), @RightBorderX(fraction) z"></path>
