@@ -1,6 +1,9 @@
-﻿namespace SpeiderappAPI.Models
+﻿using System;
+using SpeiderappAPI.Models.Interfaces;
+
+namespace SpeiderappAPI.Models
 {
-    public class Resource
+    public class Resource : IUpdatable, ISoftDeletable
     {
         public Resource(long requirementID, string name, string description, string location)
         {
@@ -16,5 +19,7 @@
         public string Location { get; set; }
         public long RequirementID { get; set; }
         public virtual Requirement Requirement { get; set; } = null!;
+        public DateTime UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
     }
 }

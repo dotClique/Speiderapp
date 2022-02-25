@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SpeiderappAPI.Database;
 using SpeiderappAPI.DataTransferObjects;
 using SpeiderappAPI.Models;
+using SpeiderappAPI.Models.Interfaces;
 
 namespace SpeiderappAPI.Controllers
 {
@@ -28,7 +29,9 @@ namespace SpeiderappAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RequirementDto>>> GetRequirements()
         {
-            return await _context.Requirements.Where(requirement => requirement.RequirementType == nameof(Requirement))
+            return await _context.Requirements
+                .ExcludeDeleted().ExcludeArchived()
+                .Where(requirement => requirement.RequirementType == nameof(Requirement))
                 .ProjectTo<RequirementDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
@@ -36,14 +39,18 @@ namespace SpeiderappAPI.Controllers
         [HttpGet("all")]
         public async Task<ActionResult<IEnumerable<RequirementDto>>> GetRequirementsAll()
         {
-            return await _context.Requirements.ProjectTo<RequirementDto>(_mapper.ConfigurationProvider).ToListAsync();
+            return await _context.Requirements
+                .ExcludeDeleted().ExcludeArchived()
+                .ProjectTo<RequirementDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
         // Get: api/Requirement/<id>
         [HttpGet("{id:long}")]
         public async Task<ActionResult<RequirementDto>> GetRequirement(long id)
         {
-            var requirement = await _context.Requirements.FindAsync(id);
+            var requirement = await _context.Requirements
+                .ExcludeDeleted().ExcludeArchived()
+                .Where(e => e.RequirementID == id).FirstOrDefaultAsync();
 
             if (requirement == null)
             {
